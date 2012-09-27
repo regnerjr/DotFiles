@@ -1,0 +1,5 @@
+[user]
+	name = John Regner
+	email = regnerjr@gmail.com
+[credential]
+	helper = osxkeychain
