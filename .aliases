@@ -8,6 +8,11 @@ alias j="jobs"
 alias v="vim"
 alias c="clang++ -std=c++11 -stdlib=libc++"
 
+# Grep always in color
+alias grep='grep --color=auto'                 # show differences in colour
+alias egrep='egrep --color=auto'               # show differences in colour
+alias fgrep='fgrep --color=auto'               # show differences in colour
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
    colorflag="--color"
@@ -31,10 +36,6 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
-
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
@@ -48,10 +49,6 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-# Empty the Trash on all mounted volumes and the main HDD
-# Also, clear Apple’s System Logs to improve shell startup speed
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
@@ -61,6 +58,14 @@ alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
 
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 7'"
+#Generate etags file
+alias gentags="find . -type f -iname "*.[chS](pp)?" | xargs etags -a"
+
+#SVN aliases
+alias st='svn status'
+alias co='svn checkout'
+alias ci='svn commit'
+alias up='svn update'
+
+#Send a message that aliases were loaded
+echo --==++__Aliases Loaded__++==--

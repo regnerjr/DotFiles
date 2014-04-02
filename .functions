@@ -1,0 +1,15 @@
+file_version(){
+    for file in $(find . -regex ".*${1}.*\.[ch]") ; do
+        get_infos $file
+    done
+    printf '\n'
+}
+
+vgrep(){
+    if [ ! -z "$2" ] ; then
+        grep_flags="-C $2"
+    fi
+    grep_flags="--colour -n ""$grep_flags"
+    find . -regex '.*\.[ch]' -exec grep $grep_flags  "${1}" {} \; -exec get_infos {} \;
+    grep_flags=""
+}
