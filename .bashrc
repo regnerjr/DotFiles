@@ -58,7 +58,7 @@ source ~/.liquidprompt
 # SVN definitions
 export SVN_EDITOR=emacs
 export VISUAL=less
-export EDITOR=emacs
+export EDITOR='emacsclient -nc -a ""'
 export mypc=172.19.84.22
 export TERM=xterm-256color
 export http_proxy=http://127.0.0.1:3130
