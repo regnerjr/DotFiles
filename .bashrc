@@ -1,14 +1,24 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
 #If not running interactively, don't do anything
 [[ $- == *i* ]] || return
 
-# Add '~/bin' to the '$PATH'
+# Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
 
-#include ~/.inputrc
-export INPUTRC=~/.inputrc
-
+## History Options
+# See bash(1) for more options
+export HISTCONTROL=ignoreboth
+export HISTSIZE=10000
+export PROMPT_COMMAND="history -a"
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+# allow multiline commands as one history entry
+shopt -s cmdhist
+shopt -s histreedit
+shopt -s histverify
 # Load the shell dotfiles, and then some:
 # * ~/DotFiles/.path can be used to extend `$PATH`.
 # * ~/DotFiles/.extra can be used for other settings you don’t want to commit.
@@ -30,24 +40,6 @@ shopt -s dotglob
 shopt -s hostcomplete
 shopt -s checkwinsize
 
-# Resize history
-export HISTSIZE=10000
-# Ignore Duplicates
-export HISTCONTROL=ignoreboth
-export PROMPT_COMMAND="history -a"
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend
-shopt -s cmdhist
-shopt -s histreedit
-shopt -s histverify
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell
-
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
-
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
@@ -60,8 +52,15 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+# Use the liquidprompt
+source ~/.liquidprompt
+
+# SVN definitions
 export SVN_EDITOR=emacs
 export VISUAL=less
 export EDITOR=emacs
+export mypc=172.19.84.22
+export TERM=xterm-256color
+export http_proxy=http://127.0.0.1:3130
 
 echo -----=====BASHRC LOADED=====-----
