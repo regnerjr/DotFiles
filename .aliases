@@ -59,7 +59,7 @@ alias spotoff="sudo mdutil -a -i off"
 alias spoton="sudo mdutil -a -i on"
 
 #Generate etags file
-alias gentags="find . -type f -iname "*.[chS](pp)?" | xargs etags -a"
+alias gentags="find . -type f -iregex \".*\.[chS]\(pp\)?\" | xargs etags -a"
 
 #SVN aliases
 alias st='svn status'
