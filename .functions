@@ -13,3 +13,11 @@ vgrep(){
     find . -regex '.*\.[ch]' -exec grep $grep_flags  "${1}" {} \; -exec get_infos {} \;
     grep_flags=""
 }
+
+function e(){
+    emacsclient -c -a "" -n $@    # emacs gets used a lot
+}
+
+function et(){
+    emacsclient -t -a "" $@       # emacs in the terminal
+}
