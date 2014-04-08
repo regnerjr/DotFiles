@@ -1,8 +1,12 @@
 # ~/.inputrc: readline initialization file. 
 
-set completion-ignore-case on
-set show-all-if-ambiguous on
-set expand-tilde on
-set mark-directories on
-set mark-symlinked-directories on
-set match-hidden-files on
+$if Bash
+	set completion-ignore-case on
+	set show-all-if-ambiguous on
+	set mark-directories on
+	set mark-symlinked-directories on
+	set match-hidden-files on
+	#Copy the Previous word
+	"\C-xg": "\C-w\C-y \C-y \e\\"
+$endif
+set bell-style none
