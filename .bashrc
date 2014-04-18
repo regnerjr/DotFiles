@@ -19,6 +19,7 @@ shopt -s histappend
 shopt -s cmdhist
 shopt -s histreedit
 shopt -s histverify
+
 # Load the shell dotfiles, and then some:
 # * ~/DotFiles/.path can be used to extend `$PATH`.
 # * ~/DotFiles/.extra can be used for other settings you don’t want to commit.
@@ -62,5 +63,7 @@ export EDITOR='emacsclient -nc -a ""'
 export mypc=172.19.84.22
 export TERM=xterm-256color
 export http_proxy=http://127.0.0.1:3130
+
+[ -r ~/DotFiles/git/git.aliases ] && source ~/DotFiles/git/git.aliases
 
 echo -----=====BASHRC LOADED=====-----
