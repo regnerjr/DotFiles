@@ -1,5 +1,29 @@
 [user]
 	name = John Regner
-	email = regnerjr@gmail.com
+	email = j.regner@astronautics.com
 [credential]
-	helper = osxkeychain
+	helper = cache --timeout=3600
+[http]
+	proxy = http://127.0.0.1:3130
+[https]
+	proxy = http://127.0.0.1:3130
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[core]
+	safecrlf = true
+	autocrlf = false
+	editor = vim
+[help]
+	autocorrect = 1
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	l = log --oneline --decorate
