@@ -56,9 +56,8 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # Use the liquidprompt https://github.com/nojhan/liquidprompt
 source ~/liquidprompt/liquidprompt
 
-# SVN definitions
 export SVN_EDITOR=emacs
-export GIT_EDITOR='emacsclient -c' #wait for hang up! else no commit message will be sent to the git client
+# export GIT_EDITOR='emacsclient -c' #wait for hang up! else no commit message will be sent to the git client
 export EDITOR='emacsclient -nc -a ""'
 export mypc=172.19.84.22
 export TERM=xterm-256color
