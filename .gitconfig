@@ -2,7 +2,7 @@
 	name = John Regner
 	email = j.regner@astronautics.com
 [credential]
-	helper = cache --timeout=3600
+	helper = cache --timeout=14400
 [http]
 	proxy = http://127.0.0.1:3130
 [https]
