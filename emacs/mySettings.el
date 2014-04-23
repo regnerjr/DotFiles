@@ -1,13 +1,12 @@
 ;;; MySettings.el -- Provides my custom settings for use with Prelude
-
-(prelude-require-package 'keyfreq)
-(prelude-require-package 'achievements)
-(prelude-require-package 'guide-key)
-(prelude-require-package 'yasnippet)
-(prelude-require-package 'ido-vertical-mode)
-(prelude-require-package 'monokai-theme)
-
+;;; Commentary:
 ;;; Code:
+
+;;Install some packages
+(setq packages-that-i-like
+      '(keyfreq achievements guide-key yasnippet ido-vertical-mode monokai-theme helm-spotify))
+(prelude-require-packages packages-that-i-like)
+
 ;;Disable Scroll Bar
 (scroll-bar-mode -1)
 
@@ -44,6 +43,7 @@
 (defun set-yas-minor-mode-off ()
   (yas-minor-mode -1))
 (add-hook 'term-mode-hook 'set-yas-minor-mode-off t)
+(add-hook 'org-mode-hook 'set-yas-minor-mode-off t)
 
 ;;helm spotify has errors if called without debug-on-error set. So i wrote this wrapper
 (defun john-spotify ()
