@@ -29,3 +29,6 @@
 	l = log --oneline --decorate
 	fetch = fetch -v
 	bs = status -bs
+	remotes = remote -v
+	branches = branch -a
+	tags = tag -l
