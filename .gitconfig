@@ -16,6 +16,7 @@
 	safecrlf = true
 	autocrlf = false
 	editor = vim
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [help]
 	autocorrect = 1
 [alias]

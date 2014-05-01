@@ -4,7 +4,7 @@
 
 ;;Install some packages
 (setq packages-that-i-like
-      '(keyfreq achievements guide-key yasnippet ido-vertical-mode monokai-theme helm-spotify))
+      '(keyfreq achievements guide-key yasnippet ido-vertical-mode monokai-theme helm-spotify ggtags))
 (prelude-require-packages packages-that-i-like)
 
 ;;Disable Scroll Bar
