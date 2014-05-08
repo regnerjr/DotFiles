@@ -18,6 +18,11 @@ fi
 if [[ -f $HOME/.bash_logout ]] ; then
     rm $HOME/.bash_logout
     printf "Symlinking new .bash_logout"
+    ln --symbolic $PWD/.bash_logout $HOME/.bash_logout
 fi
 
-ln --symbolic $PWD/.bash_logout $HOME/.bash_logout
+
+if [[ $SHELL == '/bin/zsh' ]]; then
+    printf "Horray ZSH. Linking .zshrc"
+    ln --symbolic $PWD/.zshrc       $HOME/.zshrc
+fi
