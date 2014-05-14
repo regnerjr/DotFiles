@@ -7,7 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
-DEFAULT_USER="john" #required so that agnoser theme will not print my user@machine
+#Set DEFAULT_USER so that agnoser theme will not print my user@machine
+DEFAULT_USER="john" 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -49,7 +50,7 @@ DEFAULT_USER="john" #required so that agnoser theme will not print my user@machi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colored-man colorize common-aliases debian emacs gem history ruby svn tmux)
+plugins=(git colored-man colorize common-aliases debian emacs gem history ruby svn svn-fast-info tmux )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,4 +73,4 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
