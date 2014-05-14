@@ -33,5 +33,16 @@ move to line then executes \\C-M-i & \\[reposition-window] to show maximum of fu
     (forward-line (1- line))
     (reposition-window)))
 
+(defun john-whitespace-spaces-and-tabs ()
+  (interactive)
+  (whitespace-toggle-options 'tab-mark)
+  (whitespace-toggle-options 'space-mark)
+)
+
+(defun john-whitespace-newlines ()
+  (interactive)
+  (whitespace-toggle-options 'newline-mark)
+)
+
 (provide 'john-functions)
 ;;; john-functions.el ends here
