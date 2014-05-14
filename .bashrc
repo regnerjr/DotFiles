@@ -59,7 +59,18 @@ source ~/liquidprompt/liquidprompt
 export EDITOR='vim '
 export mypc=172.19.84.22
 export TERM=xterm-256color
-export http_proxy=http://127.0.0.1:3130
+
+#PROXY Settings
+if [[ "$(uname -s)" =~ "CYGWIN" ]] ; then
+    #Load an external file so that my password does no end up in this git repo
+    if [ -f $HOME/proxy_config ] ; then
+        source ${HOME}/proxy_config
+    else
+        echo "ERROR: No Proxy is set. Create \$HOME/proxy_config"
+    fi
+else #proxy config is easier on linux with CNTLM
+    export http_proxy=http://127.0.0.1:3130
+fi
 
 [ -r ~/DotFiles/git/git.aliases ] && source ~/DotFiles/git/git.aliases
 
