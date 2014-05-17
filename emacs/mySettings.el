@@ -16,6 +16,9 @@
 ;;only highlight really long lines
 (setq whitespace-style '(face empty trailing))
 
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
+
 ;; Define some global key commands
 (key-chord-define-global "vv"  'kill-buffer)
 (key-chord-define-global "aa" 'ido-switch-buffer)
