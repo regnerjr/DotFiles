@@ -68,8 +68,12 @@ if [[ "$(uname -s)" =~ "CYGWIN" ]] ; then
     else
         echo "ERROR: No Proxy is set. Create \$HOME/proxy_config"
     fi
-else #proxy config is easier on linux with CNTLM
+elif [[ "$HOST" =~ "PC8422" ]] ; then
+    #Set up the HTTP proxy to use cntlm, must be my linux machine at ACA
     export http_proxy=http://127.0.0.1:3130
+    export https_proxy=http://127.0.0.1:3130
+else
+    #proxy config is easier on linux with CNTLM
 fi
 
 [ -r ~/DotFiles/git/git.aliases ] && source ~/DotFiles/git/git.aliases
