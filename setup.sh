@@ -46,6 +46,8 @@ for file in $PWD/emacs/* ; do
 done
 
 # symlink the tmux config
+[ -f $HOME/.tmux.conf ]  && rm $HOME/.tmux.conf
+ln -s $PWD/.tmux.conf $HOME/.tmux.conf
 # symlink .vimrc
 [ -f $HOME/.vimrc ] && rm $HOME/.vimrc
 ln -s $PWD/.vimrc $HOME/.vimrc

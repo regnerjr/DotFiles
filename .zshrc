@@ -50,7 +50,7 @@ DEFAULT_USER="john"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colored-man colorize common-aliases debian gem history ruby svn svn-fast-info tmux )
+plugins=(git colored-man colorize debian gem history ruby svn svn-fast-info tmux )
 
 source $ZSH/oh-my-zsh.sh
 
