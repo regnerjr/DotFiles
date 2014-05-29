@@ -6,7 +6,6 @@ alias ...="cd ../.."
 alias h="history"
 alias j="jobs"
 alias v="vim"
-alias c="clang++ -std=c++11 -stdlib=libc++"
 
 # Grep always in color
 alias grep='grep --color=auto'                 # show differences in colour
@@ -40,10 +39,15 @@ alias st='svn status'
 alias co='svn checkout'
 alias ci='svn commit'
 alias up='svn update'
-
+   # show detailed svn logs for past dates
+alias sl2='svn log -r {$(date --date="2 weeks ago" +%F)}:HEAD -v -g'
+alias sl1='svn log -r {$(date --date="1 week ago" +%F)}:HEAD -v -g'
+alias s2='svn log -r {$(date --date="3 days ago" +%F)}:HEAD -v -g'
 #git aliases
 alias g=git
 alias gg='git log --decorate --oneline --graph'
 
+# zsh aliases
+alias zshrc="vim ~/.zshrc"
 #Send a message that aliases were loaded
 echo --==++__Aliases Loaded__++==--
