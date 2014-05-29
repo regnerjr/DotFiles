@@ -9,8 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster"
 #Set DEFAULT_USER so that agnoser theme will not print my user@machine
 DEFAULT_USER="john" 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
+# Load aliases.
+source ~/DotFiles/.aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -56,7 +56,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
