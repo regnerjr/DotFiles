@@ -21,3 +21,7 @@ function e(){
 function et(){
     emacsclient -t -a "" $@       # emacs in the terminal
 }
+function s(){
+	svn log -r {$(date --date="$*" +%FT%T)}:HEAD -v -g
+}
+

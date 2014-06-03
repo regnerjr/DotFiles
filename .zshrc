@@ -11,6 +11,7 @@ ZSH_THEME="agnoster"
 DEFAULT_USER="john" 
 # Load aliases.
 source ~/DotFiles/.aliases
+source ~/DotFiles/.functions
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Uncomment the following line to use case-sensitive completion.
