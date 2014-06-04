@@ -58,6 +58,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cursor ((((class color) (min-colors 89)) (:foreground "#fdf6e3" :background "#657b83" :inverse-video t))))
+ '(cursor ((t (:background "orange red" :foreground "#fdf6e3" :inverse-video t))))
  '(font-lock-reference-face ((t (:foreground "dim gray"))) t)
  '(term-default-fg-color ((t (:inherit term-color-white))) t))
