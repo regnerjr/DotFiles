@@ -21,7 +21,20 @@ function e(){
 function et(){
     emacsclient -t -a "" $@       # emacs in the terminal
 }
+
 function s(){
 	svn log -r {$(date --date="$*" +%FT%T)}:HEAD -v -g
 }
 
+function sup(){
+	# finds top svn folder for project, 
+	# navigates to it and calls svn up then returns you to your origin folder.
+	Original_dir=$(pwd)
+	echo $Original_dir
+
+	#check if above folder is still in the svn tree
+	while [[ $(ls ../.svn &>/dev/null ;echo $?) == "0" ]] ; do cd ..; done
+	svn up
+	cd  $Original_dir
+	unset Original_dir
+}
