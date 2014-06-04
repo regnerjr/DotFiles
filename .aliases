@@ -11,6 +11,11 @@ alias v="vim"
 alias grep='grep --color=auto'                 # show differences in colour
 alias egrep='egrep --color=auto'               # show differences in colour
 alias fgrep='fgrep --color=auto'               # show differences in colour
+if [[ "$SHELL" =~ "zsh" ]] ; then 
+	alias -g G='| grep'
+	alias -g L="| less"
+	alias -g LL="2>&1 | less"
+fi
 
 # Detect which `ls` flavor is in use
 ls --color -d . &>/dev/null 2>&1 && colorflag="--color" || colorflag="-G"
