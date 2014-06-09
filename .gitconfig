@@ -3,10 +3,6 @@
 	email = j.regner@astronautics.com
 [credential]
 	helper = cache --timeout=14400
-[http]
-	proxy = http://127.0.0.1:3130
-[https]
-	proxy = http://127.0.0.1:3130
 [color]
 	diff = auto
 	status = auto
