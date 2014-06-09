@@ -74,6 +74,7 @@ elif [[ "$HOST" =~ "PC8422" ]] ; then
     export https_proxy=http://127.0.0.1:3130
 else
     #proxy config is easier on linux with CNTLM
+    : #do nothing
 fi
 
 [ -r ~/DotFiles/git/git.aliases ] && source ~/DotFiles/git/git.aliases
