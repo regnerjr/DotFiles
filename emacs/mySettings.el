@@ -8,7 +8,8 @@
 (prelude-require-packages packages-that-i-like)
 
 ;;Disable Scroll Bar
-(scroll-bar-mode -1)
+(if (display-graphic-p)
+    (scroll-bar-mode -1))
 
 ;;set guru mode to only warn
 (setq guru-warn-only 1)
