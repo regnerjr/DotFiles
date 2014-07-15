@@ -1,0 +1,5 @@
+# Python Programming
+# only run pip when in a virtualenv
+export PIP_REQUIRE_VIRTUALENV=true
+#cache pip-installed packages to avoid redownloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache

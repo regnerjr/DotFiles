@@ -21,14 +21,12 @@ shopt -s histreedit
 shopt -s histverify
 
 # Load the shell dotfiles, and then some:
-# * ~/DotFiles/.path can be used to extend `$PATH`.
-# * ~/DotFiles/.extra can be used for other settings you don’t want to commit.
-for file in ~/DotFiles/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/DotFiles/.{path,bash_prompt,aliases,functions,python}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
 
-# Case-insensitive globbing (used in pathname expansion)
+# Case-insensitive globbing (used in uname expansion)
 shopt -s nocaseglob
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
