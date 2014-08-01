@@ -1,70 +1,75 @@
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+set nocompatible    " be improved
+filetype off        " required
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" set up Vundle
+set rtp+=~/vimfiles/bundle/Vundle.vim/
+let path='~/vimfiles/bundle'
+call vundle#begin(path)
+" let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-sensible'
+Plugin 'scrooloose/nerdtree'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
+" end Vundle Setup
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+syntax on
+filetype plugin indent on
 
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
+set tabstop=3     "Number of spaces per TAB
+set softtabstop=3 "Number of spaces in tab when editing
+set expandtab     " tabs are spaces
+set shiftwidth=3  " Width to use when aligning code with ==, >>, <<
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+set foldmethod=syntax
+set foldenable
+"use space to unfold folded code blocks
+nnoremap <space> za 
+set showmode
+set wildmode=list:longest "Visual Auto-complete
+set cursorline "Highlight current line
+set undofile
+set lazyredraw "Tell vim to redraw the screen less, leads to faster macros
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch "Highlight matching parens, braces, brackets
+set hlsearch
+nnoremap <leader><space> :nohlsearch<cr>
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+nnoremap <tab> %
+vnoremap <tab> %
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" Make j and k move by visual line
+nnoremap j gj
+nnoremap k gk
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+inoremap jj <ESC>
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+nnoremap <leader>a :NERDTree home<cr>
+nnoremap <leader>v :e c:\cygwin\home\regner.j\.vimrc<cr>
 
-  augroup END
+au FocusLost * :wa " save on FocusLost
+set hidden
 
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
+" Visual {{{
+"set guifont=Anonymice\ Powerline:h11
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+set background=dark
+colorscheme solarized
+"set g:solarized_hitrail
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
+set novisualbell
+set relativenumber
+set linebreak
+"}}}
