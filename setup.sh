@@ -51,3 +51,6 @@ ln -s $PWD/.tmux.conf $HOME/.tmux.conf
 # symlink .vimrc
 [ -f $HOME/.vimrc ] && rm $HOME/.vimrc
 ln -s $PWD/.vimrc $HOME/.vimrc
+# clone vundle to ./vim 
+git clone https://github.com/gmarik/Vundle.vim.git $PWD/.vim/bundle/Vundle.vim
+ln -s $PWD/.vim $HOME/.vim
