@@ -2,8 +2,16 @@ set nocompatible    " be improved
 filetype off        " required
 
 " set up Vundle
-set rtp+=~/vimfiles/bundle/Vundle.vim/
-let path='~/vimfiles/bundle'
+if has('win32')
+   set rtp+=~/vimfiles/bundle/Vundle.vim/
+   let path='~/vimfiles/bundle'
+   nnoremap <leader>v :e c:\cygwin\home\regner.j\.vimrc<cr>
+   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
+else
+   set rtp+=~/.vim/bundle/Vundle.vim/
+   let path='~/.vim/bundle'
+   nnoremap <leader>v :e ~/.vimrc<cr>
+endif
 call vundle#begin(path)
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
@@ -54,14 +62,11 @@ vnoremap <F1> <ESC>
 inoremap jj <ESC>
 
 nnoremap <leader>a :NERDTree home<cr>
-nnoremap <leader>v :e c:\cygwin\home\regner.j\.vimrc<cr>
 
 au FocusLost * :wa " save on FocusLost
 set hidden
 
 " Visual {{{
-"set guifont=Anonymice\ Powerline:h11
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set background=dark
