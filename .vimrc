@@ -6,7 +6,6 @@ if has('win32')
    set rtp+=~/vimfiles/bundle/Vundle.vim/
    let path='~/vimfiles/bundle'
    nnoremap <leader>v :e c:\cygwin\home\regner.j\.vimrc<cr>
-   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
 else
    set rtp+=~/.vim/bundle/Vundle.vim/
    let path='~/.vim/bundle'
@@ -67,6 +66,7 @@ au FocusLost * :wa " save on FocusLost
 set hidden
 
 " Visual {{{
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set background=dark
