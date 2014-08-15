@@ -33,7 +33,7 @@ set shiftwidth=3  " Width to use when aligning code with ==, >>, <<
 set foldmethod=syntax
 set foldenable
 "use space to unfold folded code blocks
-nnoremap <space> za 
+nnoremap <space> za
 set showmode
 set wildmode=list:longest "Visual Auto-complete
 set cursorline "Highlight current line
@@ -66,7 +66,11 @@ au FocusLost * :wa " save on FocusLost
 set hidden
 
 " Visual {{{
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
+if has ("gui_gtk2")
+   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+else
+   set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
+endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set background=dark
