@@ -26,7 +26,7 @@
  '(menu-bar-mode nil)
  '(nxml-attribute-indent 2)
  '(org-agenda-dim-blocked-tasks t)
- '(org-agenda-files (quote ("~/CurrentWork/Todo.org" "~/CurrentWork/RepeatingTodos.org")))
+ '(org-agenda-files (quote (if (string-equal system-type "windows-nt")("/cygdrive/g/Todo.org" "/cygdrive/g/Repeatingtodos.org")("~/CurrentWork/Todo.org" "~/CurrentWork/Repeatingtodos.org")))
  '(org-capture-templates (quote (("g" "GTD Inbox Add" entry (file+headline "~/CurrentWork/Todo.org" "GTD INBOX - Clean This !") "** TODO %?"))))
  '(org-cycle-separator-lines 1)
  '(org-enforce-todo-dependencies t)
