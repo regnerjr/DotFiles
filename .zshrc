@@ -4,8 +4,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="agnoster"
-#Set DEFAULT_USER so that agnoser theme will not print my user@machine
-DEFAULT_USER="john" 
 
 # Load external files
 source ~/DotFiles/.aliases
@@ -33,3 +31,10 @@ export EDITOR='vim'
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
+if [[ $OS == Windows_NT ]] ; then
+   #Set DEFAULT_USER so that agnoser theme will not print my user@machine
+   DEFAULT_USER="regner.j"
+   source ~/proxy_config;
+else
+   DEFAULT_USER="john"
+fi
