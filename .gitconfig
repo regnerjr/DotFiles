@@ -1,0 +1,78 @@
+[credential]
+  helper = osxkeychain
+
+[user]
+  name = John Regner
+  email = regnerjr@gmail.com
+  username = regnerjr
+
+[alias]
+  l = log --oneline --branches --decorate --graph
+  s = status --short --branch
+  co = checkout
+  d = diff --patch --word-diff=color --minimal --stat
+  ds = diff --staged --word-diff=color
+  dt = difftool --no-prompt
+
+[help]
+  autocorrect = 50
+
+[color]
+  ui = true
+  wtf = true
+[color "diff"]
+    meta = yellow bold
+    commit = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "diff-hilight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = greeen bold
+    newHighlight = green bold 22
+
+[push]
+  default = current
+
+[github]
+  api-token = e1c1fc6a7071ce19b028754d015ac4cc232bbaa6
+
+[diff]
+  tool = vimdiff
+  mnemonicprefix = true
+
+[core]
+    editor = vim
+    whitespace = warn
+	excludesfile = /Users/john/.gitignore_global
+
+[fetch]
+  prune = true
+
+[push]
+    default = current
+
+[merge]
+  tool = opendiff
+
+[mergetool "opendiff"]
+    cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+    show = diff-so-fancy | less --tabs=1,5 -RFX
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	gpgsign = true
