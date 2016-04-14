@@ -115,3 +115,8 @@ set complete+=kspell
 " Use dark colour scheme based on Atom
 colorscheme onedark
 
+"Allow focused window extra room, Make other splits smaller
+set winwidth=84
+set winheight=5
+set winminheight=5
+set winheight=999
