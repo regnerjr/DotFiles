@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/john/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,11 +53,13 @@ cdpath=(.. ../.. /Users/john/dev/GitHub /Users/john/dev/GitHub/AppleSwift)
 source ~/.env
 
 # Configure GPG agent
-[ -f ~/.gpg-agent-info ] && source ~/.gpg-agent-info
-if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
-  export GPG_AGENT_INFO
-else
-  eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
-fi
-export GPG_TTY=`tty`
+if hash gpg-agent 2>/dev/null; then
+    [ -f ~/.gpg-agent-info ] && source ~/.gpg-agent-info
+    if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
+        export GPG_AGENT_INFO
+    else
+        eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
+    fi
+    export GPG_TTY=`tty`
 
+fi
