@@ -36,9 +36,6 @@
 [push]
   default = current
 
-[github]
-  api-token = e1c1fc6a7071ce19b028754d015ac4cc232bbaa6
-
 [diff]
   tool = vimdiff
   mnemonicprefix = true
