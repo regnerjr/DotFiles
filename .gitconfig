@@ -1,25 +1,26 @@
 [credential]
-  helper = osxkeychain
+    helper = osxkeychain
 
 [user]
-  name = John Regner
-  email = regnerjr@gmail.com
-  username = regnerjr
+    name = John Regner
+    email = regnerjr@gmail.com
+    username = regnerjr
+    signingkey = C874C2B8
 
 [alias]
-  l = log --oneline --branches --decorate --graph
-  s = status --short --branch
-  co = checkout
-  d = diff --patch --word-diff=color --minimal --stat
-  ds = diff --staged --word-diff=color
-  dt = difftool --no-prompt
+    l = log --oneline --branches --decorate --graph
+    s = status --short --branch
+    co = checkout
+    d = diff --patch --word-diff=color --minimal --stat
+    ds = diff --staged --word-diff=color
+    dt = difftool --no-prompt
 
 [help]
-  autocorrect = 50
+    autocorrect = 50
 
 [color]
-  ui = true
-  wtf = true
+    ui = true
+    wtf = true
 [color "diff"]
     meta = yellow bold
     commit = green bold
@@ -34,42 +35,36 @@
     newHighlight = green bold 22
 
 [push]
-  default = current
+    default = current
 
 [diff]
-  tool = vimdiff
-  mnemonicprefix = true
+    tool = vimdiff
+    mnemonicprefix = true
 
 [core]
     editor = vim
     whitespace = warn
-	excludesfile = /Users/john/.gitignore_global
+    excludesfile = /Users/john/.gitignore_global
 
 [fetch]
-  prune = true
+    prune = true
 
 [push]
     default = current
 
 [merge]
-  tool = opendiff
+    tool = opendiff
 
 [mergetool "opendiff"]
     cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
+    diff = diff-so-fancy | less --tabs=1,5 -RFX
     show = diff-so-fancy | less --tabs=1,5 -RFX
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [commit]
-	gpgsign = true
+    gpgsign = true
+    template = /Users/john/.stCommitMsg
