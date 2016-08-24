@@ -1,1 +1,1 @@
-set guifont=Hasklig:h14
+set guifont=Hack:h14
