@@ -99,7 +99,7 @@ end)
 ----- System Default Output Volume
 hs.hotkey.bind({"cmd","alt","ctrl"}, "pageup", function()
     local audio = hs.audiodevice.defaultOutputDevice()
-    audio:setMuted(False)
+    audio:setMuted(false)
     local name = audio:name()
     local vol = audio:volume()
     local newVol = vol + 5
@@ -110,7 +110,7 @@ end
 
 hs.hotkey.bind({"cmd","alt","ctrl"}, "pagedown", function()
     local audio = hs.audiodevice.defaultOutputDevice()
-    audio:setMuted(False)
+    audio:setMuted(false)
     local name = audio:name()
     local vol = audio:volume()
     local newVol = vol - 5
@@ -121,7 +121,7 @@ end
 
 hs.hotkey.bind({"cmd","alt","ctrl"}, "forwarddelete", function()
     local audio = hs.audiodevice.defaultOutputDevice()
-    audio:setMuted(False)
+    audio:setMuted(false)
     local name = audio:name()
     local vol = audio:volume()
     local newVol = vol - 25
