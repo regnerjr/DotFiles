@@ -9,6 +9,7 @@ install swiftlint
 install the_silver_searcher
 install tmux
 install tree
+install vim
 install zsh
 
 install multimarkdown

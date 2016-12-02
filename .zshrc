@@ -5,8 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
-
+ZSH_THEME="bullet-train"
+BULLETTRAIN_TIME_SHOW=false
 # Use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
@@ -24,7 +24,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alcatraz brew common-aliases compleat colored-man-pages colorize git git-extras git-prompt xcode)
+plugins=(alcatraz brew common-aliases compleat colored-man-pages colorize git git-extras xcode)
 
 # User configuration
 
@@ -48,6 +48,7 @@ source $ZSH/oh-my-zsh.sh
 alias v="vim"
 alias mkx="cd swift;utils/build-script -X --skip-build -- --reconfigure"
 alias sx="cd swift; cd ../build/Xcode-DebugAssert/swift-macosx-x86_64/; xc ; cd swift;"
+alias bn="gb | grep '*' | awk '{print \$2}' | pbcopy"
 cdpath=(.. ../.. /Users/john/dev/GitHub /Users/john/dev/GitHub/AppleSwift)
 
 source ~/.env
