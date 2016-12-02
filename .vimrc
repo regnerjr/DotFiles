@@ -1,7 +1,12 @@
 set t_Co=256 " Enable 256 colors for teminal vim
 set nocompatible " Don't be vi compadfasdftible
 set list " Show tabs and trailing spaces
-set clipboard=unnamed " use the system clipboard
+if has('clipboard')     " If the feature is available
+    set clipboard=unnamed " copy to the system clipboard
+    if has('unnamedplus')
+        set clipboard+=unnamedplus
+    endif
+endif
 
 " Smash jk to go back to normal mode and save
 inoremap jk <ESC>:w<CR>
@@ -49,6 +54,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bronson/vim-trailing-whitespace'
@@ -58,6 +64,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/listtoggle'
 Plug 'keith/swift.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'gfontenot/vim-xcode'
+Plug 'christoomey/vim-system-copy'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
@@ -114,6 +126,8 @@ set complete+=kspell
 
 " Use dark colour scheme based on Atom
 colorscheme onedark
+let g:onedark_termcolors=256
+let g:onedark_terminal_italics=1
 
 "Allow focused window extra room, Make other splits smaller
 set winwidth=84
@@ -124,3 +138,12 @@ set winheight=999
 "More natural Splits
 set splitbelow
 set splitright
+
+"Configure Vim-Xcode
+let g:xcode_default_simulator = 'iPhone 5s'
+set secure " Don't let external configs do scary shit
+set exrc   " Load local vimrc if found
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
