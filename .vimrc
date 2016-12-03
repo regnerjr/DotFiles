@@ -65,11 +65,11 @@ Plug 'valloric/listtoggle'
 Plug 'keith/swift.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'gfontenot/vim-xcode'
-Plug 'christoomey/vim-system-copy'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'christoomey/vim-conflicted'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
