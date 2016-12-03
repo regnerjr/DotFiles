@@ -1,5 +1,5 @@
 set t_Co=256 " Enable 256 colors for teminal vim
-set nocompatible " Don't be vi compadfasdftible
+set nocompatible " Don't be vi compatible
 set list " Show tabs and trailing spaces
 set clipboard=unnamed " use the system clipboard
 
