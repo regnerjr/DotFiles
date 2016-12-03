@@ -25,7 +25,6 @@
     meta = yellow bold
     commit = green bold
     frag = magenta bold
-    old = red bold
     new = green bold
     whitespace = red reverse
 [color "diff-hilight"]
