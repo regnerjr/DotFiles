@@ -1,6 +1,7 @@
 set t_Co=256 " Enable 256 colors for teminal vim
 set nocompatible " Don't be vi compatible
 set list " Show tabs and trailing spaces
+
 if has('clipboard')     " If the feature is available
     set clipboard=unnamed " copy to the system clipboard
     if has('unnamedplus')
@@ -59,11 +60,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/listtoggle'
 Plug 'keith/swift.vim'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 Plug 'gfontenot/vim-xcode'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-unimpaired'
@@ -73,10 +74,10 @@ Plug 'christoomey/vim-conflicted'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
-let g:airline_powerline_fonts = 1 "Use Powerline fonts
-let g:airline#extensions#tabline#enabled = 1 "when no tabs open show buffers
-let g:airline#extensions#tmuxline#enabled = 0 "Don't let airline override tmuxline
-autocmd VimEnter * AirlineTheme base16
+"let g:airline_powerline_fonts = 1 "Use Powerline fonts
+"let g:airline#extensions#tabline#enabled = 1 "when no tabs open show buffers
+"let g:airline#extensions#tmuxline#enabled = 0 "Don't let airline override tmuxline
+"autocmd VimEnter * AirlineTheme base16
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
