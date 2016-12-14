@@ -48,6 +48,7 @@ alias v="vim"
 alias mkx="cd swift;utils/build-script -X --skip-build -- --reconfigure"
 alias sx="cd swift; cd ../build/Xcode-DebugAssert/swift-macosx-x86_64/; xc ; cd swift;"
 alias bn="gb | grep '*' | awk '{print \$2}' | pbcopy"
+alias git=hub
 cdpath=(.. ../.. /Users/john/dev/GitHub /Users/john/dev/GitHub/AppleSwift)
 
 source ~/.env
