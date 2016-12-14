@@ -4,8 +4,10 @@
 [user]
     name = John Regner
     email = regnerjr@gmail.com
-    username = regnerjr
     signingkey = C874C2B8
+
+[github]
+    user = regnejr
 
 [alias]
     l = log --oneline --branches --decorate --graph
@@ -61,6 +63,7 @@
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
+
 [pager]
     diff = diff-so-fancy | less --tabs=1,5 -RFX
     show = diff-so-fancy | less --tabs=1,5 -RFX
