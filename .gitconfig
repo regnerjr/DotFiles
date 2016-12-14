@@ -20,6 +20,9 @@
 [help]
     autocorrect = 50
 
+[rerere]
+	enabled = 1
+
 [color]
     ui = true
     wtf = true
