@@ -52,10 +52,12 @@ nnoremap <C-l> <C-w>l
 
 " Use VimPlug to manage Plugins
 call plug#begin()
+Plug 'jez/vim-github-hub'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
 Plug 'kien/ctrlp.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bronson/vim-trailing-whitespace'
@@ -106,7 +108,7 @@ autocmd FocusLost * :wa
 
 " Spell Checking for GitCommit and Markdown files
 " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
-autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit setlocal spell textwidth=72
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Spell-check Markdown files
