@@ -18,6 +18,7 @@ install htmldoc
 install ninja
 install python
 
+install keybase
 install gnupg
 install gpg-agent
 install pinentry-mac
