@@ -1,74 +1,74 @@
 [credential]
-    helper = osxkeychain
+	helper = osxkeychain
 
 [user]
-    name = John Regner
-    email = regnerjr@gmail.com
-    signingkey = C874C2B8
+	name = John Regner
+	email = regnerjr@gmail.com
+	signingkey = C874C2B8
 
 [github]
-    user = regnejr
+	user = regnejr
 
 [alias]
-    l = log --oneline --branches --decorate --graph
-    s = status --short --branch
-    co = checkout
-    d = diff --patch --word-diff=color --minimal --stat
-    ds = diff --staged --word-diff=color
-    dt = difftool --no-prompt
+	l = log --oneline --branches --decorate --graph
+	s = status --short --branch
+	co = checkout
+	d = diff --patch --word-diff=color --minimal --stat
+	ds = diff --staged --word-diff=color
+	dt = difftool --no-prompt
 
 [help]
-    autocorrect = 50
+	autocorrect = 50
 
 [rerere]
 	enabled = 1
 
 [color]
-    ui = true
-    wtf = true
+	ui = true
+	wtf = true
 [color "diff"]
-    meta = yellow bold
-    commit = green bold
-    frag = magenta bold
-    new = green bold
-    whitespace = red reverse
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	new = green bold
+	whitespace = red reverse
 [color "diff-hilight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = greeen bold
-    newHighlight = green bold 22
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = greeen bold
+	newHighlight = green bold 22
 
 [push]
-    default = current
+	default = current
 
 [diff]
-    tool = vimdiff
-    mnemonicprefix = true
+	tool = vimdiff
+	mnemonicprefix = true
 
 [core]
-    editor = vim
-    whitespace = warn
-    excludesfile = /Users/john/.gitignore_global
+	editor = vim
+	whitespace = warn
+	excludesfile = /Users/john/.gitignore_global
 
 [fetch]
-    prune = true
+	prune = true
 
 [push]
-    default = current
+	default = current
 
 [merge]
-    tool = opendiff
+	tool = opendiff
 
 [mergetool "opendiff"]
-    cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
+	cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
 
 [filter "lfs"]
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
-    required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 
 [pager]
-    diff = diff-so-fancy | less --tabs=1,5 -RFX
-    show = diff-so-fancy | less --tabs=1,5 -RFX
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
 [commit]
 	gpgsign = true
