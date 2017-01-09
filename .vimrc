@@ -136,6 +136,9 @@ colorscheme onedark
 let g:onedark_termcolors=256
 let g:onedark_terminal_italics=1
 
+" Set gutter background to black
+highlight SignColumn ctermbg=black
+
 "Allow focused window extra room, Make other splits smaller
 set winwidth=84
 set winheight=5
