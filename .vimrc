@@ -40,6 +40,9 @@ set hlsearch   "Hilight search matches
 set showmatch "show matching bracket
 set colorcolumn=80 "Highlight column 80
 
+" User Silver Searcher instead of grep
+set grepprg=ag
+
 "Move by visual line
 nnoremap j gj
 nnoremap k gk
