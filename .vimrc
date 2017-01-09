@@ -115,7 +115,7 @@ autocmd FileType gitcommit setlocal spell textwidth=72
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Spell-check Markdown files
-autocmd FileType markdown setlocal spell
+autocmd FileType markdown setlocal spell nolist wrap lbr
 
 " Don't line wrap swift files
 autocmd FileType swift setlocal nowrap
