@@ -23,7 +23,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(alcatraz brew common-aliases compleat colored-man-pages colorize git git-extras xcode)
+plugins=(alcatraz brew common-aliases compleat colored-man-pages colorize xcode)
 
 # User configuration
 
@@ -47,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 alias v="vim"
 alias mkx="cd swift;utils/build-script -X --skip-build -- --reconfigure"
 alias sx="cd swift; cd ../build/Xcode-DebugAssert/swift-macosx-x86_64/; xc ; cd swift;"
-alias bn="gb | grep '*' | awk '{print \$2}' | pbcopy"
+alias bn="git branch | grep '*' | awk '{print \$2}' | pbcopy"
 alias git=hub
 
 # Markdown pull request with hub
