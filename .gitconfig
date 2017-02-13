@@ -16,6 +16,9 @@
 	d = diff --patch --word-diff=color --minimal --stat
 	ds = diff --staged --word-diff=color
 	dt = difftool --no-prompt
+	fa = fetch --all --prune
+	rhh = reset --hard HEAD
+	c = commit -v
 
 [help]
 	autocorrect = 50
