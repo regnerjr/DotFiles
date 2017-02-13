@@ -40,9 +40,6 @@ set hlsearch   "Hilight search matches
 set showmatch "show matching bracket
 set colorcolumn=80 "Highlight column 80
 
-" User Silver Searcher instead of grep
-set grepprg=ag
-
 "Move by visual line
 nnoremap j gj
 nnoremap k gk
@@ -69,7 +66,6 @@ Plug 'airblade/vim-gitgutter'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/listtoggle'
 Plug 'keith/swift.vim'
-Plug 'rking/ag.vim'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'gfontenot/vim-xcode'
 Plug 'tpope/vim-markdown'
@@ -84,9 +80,15 @@ set updatetime=250 "Faster update time for GitGutter
 "let g:airline#extensions#tabline#enabled = 1 "when no tabs open show buffers
 "let g:airline#extensions#tmuxline#enabled = 0 "Don't let airline override tmuxline
 "autocmd VimEnter * AirlineTheme base16
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+
+if executable('ag')
+    " User Silver Searcher instead of grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Make CtrlP use ag for listing the files. Way faster and no useless files.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
 
 " Tab completion
 " will insert tab at beginning of line,
