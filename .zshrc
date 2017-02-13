@@ -47,7 +47,6 @@ source $ZSH/oh-my-zsh.sh
 alias v="vim"
 alias mkx="cd swift;utils/build-script -X --skip-build -- --reconfigure"
 alias sx="cd swift; cd ../build/Xcode-DebugAssert/swift-macosx-x86_64/; xc ; cd swift;"
-alias bn="git branch | grep '*' | awk '{print \$2}' | pbcopy"
 alias git=hub
 
 # Markdown pull request with hub

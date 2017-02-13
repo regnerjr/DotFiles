@@ -20,6 +20,7 @@
 	rhh = reset --hard HEAD
 	c = commit -v
 	a = add -p
+    bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
 
 
 [help]
