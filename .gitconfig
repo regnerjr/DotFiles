@@ -19,6 +19,8 @@
 	fa = fetch --all --prune
 	rhh = reset --hard HEAD
 	c = commit -v
+	a = add -p
+
 
 [help]
 	autocorrect = 50
