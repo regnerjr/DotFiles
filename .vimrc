@@ -125,6 +125,11 @@ autocmd FileType swift setlocal nowrap
 " Don't warn on focus lost for files with no name
 autocmd FocusLost * nested silent! wall
 
+augroup quickfix
+    autocmd!
+    autocmd FileType qf setlocal nowrap
+augroup END
+
 " Set spellfile to location that is guaranteed to exist,
 " can be symlinked to Dropbox or kept in Git
 " and managed outside of thoughtbot/dotfiles using rcm.
