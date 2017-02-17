@@ -82,3 +82,5 @@
 	verbose = true
 [submodule]
 	fetchJobs = 4
+[stash]
+	showPatch = true
