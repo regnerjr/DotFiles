@@ -50,6 +50,7 @@
 [diff]
 	tool = vimdiff
 	mnemonicprefix = true
+	indentHeuristic = true
 
 [core]
 	editor = vim
