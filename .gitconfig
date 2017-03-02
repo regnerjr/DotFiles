@@ -36,6 +36,7 @@
 	meta = yellow bold
 	commit = green bold
 	frag = magenta bold
+	old = red bold
 	new = green bold
 	whitespace = red reverse
 [color "diff-hilight"]
@@ -84,3 +85,8 @@
 	fetchJobs = 4
 [stash]
 	showPatch = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
