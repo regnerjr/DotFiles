@@ -11,6 +11,7 @@
 
 [alias]
 	l = log --oneline --branches --decorate --graph
+	b = branch
 	s = status --short --branch
 	co = checkout
 	d = diff --patch --word-diff=color --minimal --stat
@@ -20,7 +21,7 @@
 	rhh = reset --hard HEAD
 	c = commit -v
 	a = add -p
-    bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
+	bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
 
 
 [help]
