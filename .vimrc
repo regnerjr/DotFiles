@@ -129,6 +129,9 @@ augroup quickfix
     autocmd!
     autocmd FileType qf setlocal nowrap
 augroup END
+" use tabs for .gitconfig file
+autocmd Filetype gitconfig setlocal ts=4 sw=4 sts=0 noexpandtab
+
 
 " Set spellfile to location that is guaranteed to exist,
 " can be symlinked to Dropbox or kept in Git
