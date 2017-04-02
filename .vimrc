@@ -152,12 +152,6 @@ let g:onedark_terminal_italics=1
 " Set gutter background to black
 highlight SignColumn ctermbg=black
 
-"Allow focused window extra room, Make other splits smaller
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
-
 "More natural Splits
 set splitbelow
 set splitright
