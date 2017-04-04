@@ -73,6 +73,7 @@
 
 [push]
 	default = current
+	ff = only
 
 [merge]
 	tool = opendiff
