@@ -74,6 +74,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-conflicted'
+Plug 'trevordmiller/nova-vim'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
@@ -114,7 +115,7 @@ autocmd FocusLost * :wa
 
 " Spell Checking for GitCommit and Markdown files
 " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
-autocmd FileType gitcommit setlocal spell textwidth=72
+autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Spell-check Markdown files
@@ -145,9 +146,11 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 set complete+=kspell
 
 " Use dark colour scheme based on Atom
-colorscheme onedark
-let g:onedark_termcolors=256
-let g:onedark_terminal_italics=1
+"colorscheme onedark
+"let g:onedark_termcolors=256
+"let g:onedark_terminal_italics=1
+
+colorscheme nova
 
 " Set gutter background to black
 highlight SignColumn ctermbg=black

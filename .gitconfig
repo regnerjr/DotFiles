@@ -34,25 +34,36 @@
 	ui = true
 	wtf = true
 [color "diff"]
-	meta = yellow bold
-	commit = green bold
-	frag = magenta bold
-	old = red bold
+	meta = red bold
+	frag = black bold
+	func = blue
+	old = red strike
 	new = green bold
+	commit = blue
 	whitespace = red reverse
+	context = normal
+
 [color "diff-hilight"]
 	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = greeen bold
-	newHighlight = green bold 22
+	oldHighlight = red bold
+	newNormal = green bold
+	newHighlight = green bol
+
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+	current = cyan
+	local = blue
+	remote = magenta
+	upstream = magenta
+	plain = normal
+
 [color "status"]
-	added = yellow
-	changed = green
+	header = black bold
+	branch = cyan
+	nobranch = red
+	unmerged = red
 	untracked = cyan
+	added = green
+	changed = red bold
 
 [push]
 	default = current
@@ -96,8 +107,3 @@
 	fetchJobs = 4
 [stash]
 	showPatch = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
