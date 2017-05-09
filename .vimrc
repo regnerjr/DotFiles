@@ -75,6 +75,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-conflicted'
 Plug 'trevordmiller/nova-vim'
+Plug 'raichoo/purescript-vim'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
