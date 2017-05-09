@@ -22,6 +22,7 @@
 	c = commit -v
 	a = add -p
 	bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
+	jk = commit --amend --no-edit
 
 
 [help]
