@@ -62,12 +62,9 @@ Plug 'kien/ctrlp.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/listtoggle'
 Plug 'keith/swift.vim'
 Plug 'vim-syntastic/syntastic'
-"Plug 'edkolev/tmuxline.vim'
 Plug 'gfontenot/vim-xcode'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-unimpaired'
@@ -76,13 +73,10 @@ Plug 'junegunn/gv.vim'
 Plug 'christoomey/vim-conflicted'
 Plug 'trevordmiller/nova-vim'
 Plug 'raichoo/purescript-vim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 set updatetime=250 "Faster update time for GitGutter
-"let g:airline_powerline_fonts = 1 "Use Powerline fonts
-"let g:airline#extensions#tabline#enabled = 1 "when no tabs open show buffers
-"let g:airline#extensions#tmuxline#enabled = 0 "Don't let airline override tmuxline
-"autocmd VimEnter * AirlineTheme base16
 
 if executable('ag')
     " User Silver Searcher instead of grep
@@ -124,8 +118,6 @@ autocmd FileType markdown setlocal spell nolist wrap lbr
 
 " Don't line wrap swift files
 autocmd FileType swift setlocal nowrap
-" Lint Swift with swiftlint or swift package manager
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 " Don't warn on focus lost for files with no name
 autocmd FocusLost * nested silent! wall
@@ -146,15 +138,7 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
-" Use dark colour scheme based on Atom
-"colorscheme onedark
-"let g:onedark_termcolors=256
-"let g:onedark_terminal_italics=1
-
 colorscheme nova
-
-" Set gutter background to black
-highlight SignColumn ctermbg=black
 
 "More natural Splits
 set splitbelow
@@ -170,13 +154,3 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " bind K to grep word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Recommended Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
