@@ -154,3 +154,10 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " bind K to grep word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Settings for vimwiki
+" Store wiki in dropbox folder
+" use markdown syntax
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki',
+                       \ 'syntax': 'markdown', 'ext': '.md'}]
+

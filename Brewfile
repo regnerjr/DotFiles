@@ -44,9 +44,9 @@ brew "htmldoc"
 brew "pandoc"
 
 # Signing and Security
-tap "kryptco"
-brew "kr"
-brew "keybase"
+tap "kryptco/tap"
+brew "kryptco/tap/kr"
+brew "caskroom/cask/keybase"
 brew "gnupg"
 brew "gpg-agent"
 brew "pinentry-mac"
