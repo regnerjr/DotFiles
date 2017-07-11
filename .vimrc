@@ -50,31 +50,42 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Use VimPlug to manage Plugins
-call plug#begin()
-Plug 'jez/vim-github-hub'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
-Plug 'kien/ctrlp.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'airblade/vim-gitgutter'
-Plug 'valloric/listtoggle'
-Plug 'keith/swift.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'gfontenot/vim-xcode'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'christoomey/vim-conflicted'
-Plug 'trevordmiller/nova-vim'
-Plug 'raichoo/purescript-vim'
-Plug 'vimwiki/vimwiki'
-call plug#end()
+" Use MinPac to manager Plugins
+" https://github.com/k-takata/minpac
+packadd minpac
+call minpac#init()
+
+" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+call minpac#add('jez/vim-github-hub')
+call minpac#add('tpope/vim-sensible')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-git')
+call minpac#add('kien/ctrlp.vim')
+call minpac#add('nathanaelkane/vim-indent-guides')
+call minpac#add('bronson/vim-trailing-whitespace')
+call minpac#add('airblade/vim-gitgutter')
+call minpac#add('valloric/listtoggle')
+call minpac#add('keith/swift.vim')
+call minpac#add('vim-syntastic/syntastic')
+call minpac#add('gfontenot/vim-xcode')
+call minpac#add('tpope/vim-markdown')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('junegunn/gv.vim')
+call minpac#add('christoomey/vim-conflicted')
+call minpac#add('trevordmiller/nova-vim')
+call minpac#add('raichoo/purescript-vim')
+call minpac#add('vimwiki/vimwiki')
+
+packloadall
+
+" minpac commands:
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
 
 set updatetime=250 "Faster update time for GitGutter
 
