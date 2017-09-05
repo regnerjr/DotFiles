@@ -23,6 +23,7 @@
 	a = add -p
 	bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
 	jk = commit --amend --no-edit
+	patch = !git --no-pager diff --no-color
 
 [help]
 	autocorrect = 50
