@@ -24,7 +24,6 @@
 	bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
 	jk = commit --amend --no-edit
 
-
 [help]
 	autocorrect = 50
 
@@ -34,21 +33,22 @@
 [color]
 	ui = true
 	wtf = true
+
 [color "diff"]
-	meta = red bold
-	frag = black bold
+	meta = 227
+	frag = magenta bold
 	func = blue
-	old = red strike
+	old = red bold
 	new = green bold
-	commit = blue
+	commit = 227 bold
 	whitespace = red reverse
 	context = normal
 
 [color "diff-hilight"]
 	oldNormal = red bold
-	oldHighlight = red bold
+	oldHighlight = red bold 52
 	newNormal = green bold
-	newHighlight = green bol
+	newHighlight = green bold 22
 
 [color "branch"]
 	current = cyan
@@ -78,7 +78,7 @@
 	editor = vim
 	whitespace = warn
 	excludesfile = ~/.gitignore_global
-	pager = diff-highlight | diff-so-fancy | less -r
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [fetch]
 	prune = true
@@ -99,12 +99,15 @@
 	required = true
 
 [pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
-	show = diff-so-fancy | less --tabs=1,5 -RFX
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+
 [commit]
 	gpgsign = true
 	verbose = true
+
 [submodule]
 	fetchJobs = 4
+
 [stash]
 	showPatch = true
