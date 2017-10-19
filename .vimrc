@@ -67,6 +67,7 @@ call minpac#add('tpope/vim-git')
 call minpac#add('kien/ctrlp.vim')
 call minpac#add('nathanaelkane/vim-indent-guides')
 call minpac#add('bronson/vim-trailing-whitespace')
+call minpac#add('tpope/vim-unimpaired')
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('valloric/listtoggle')
 call minpac#add('keith/swift.vim')
@@ -154,14 +155,12 @@ colorscheme nova
 "More natural Splits
 set splitbelow
 set splitright
+colorscheme onedark
 
 "Configure Vim-Xcode
 let g:xcode_default_simulator = 'iPhone 5s'
 set secure " Don't let external configs do scary shit
 set exrc   " Load local vimrc if found
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " bind K to grep word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
