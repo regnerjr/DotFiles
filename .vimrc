@@ -70,11 +70,10 @@ call minpac#add('bronson/vim-trailing-whitespace')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('valloric/listtoggle')
+" Swift Dev
 call minpac#add('keith/swift.vim')
-call minpac#add('vim-syntastic/syntastic')
 call minpac#add('gfontenot/vim-xcode')
 call minpac#add('tpope/vim-markdown')
-call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('junegunn/gv.vim')
 call minpac#add('christoomey/vim-conflicted')
@@ -114,25 +113,17 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
-" Source .vimrc on save
-autocmd bufwritepost .vimrc source $MYVIMRC
-
-" Save on focus lost
-autocmd FocusLost * :wa
-
 " Spell Checking for GitCommit and Markdown files
 " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
 autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
-autocmd BufRead,BufNewFile *.md set filetype=markdown
 
-" Spell-check Markdown files
+" Markdown files
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType markdown setlocal spell nolist wrap lbr
 
 " Don't line wrap swift files
 autocmd FileType swift setlocal nowrap
 
-" Don't warn on focus lost for files with no name
-autocmd FocusLost * nested silent! wall
 
 augroup quickfix
     autocmd!
@@ -149,9 +140,6 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
-
-colorscheme nova
-
 "More natural Splits
 set splitbelow
 set splitright
