@@ -1,17 +1,19 @@
-set t_Co=256 " Enable 256 colors for teminal vim
-set nocompatible " Don't be vi compatible
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+"set t_Co=256 " Enable 256 colors for teminal vim
 set list " Show tabs and trailing spaces
 
-if has('clipboard')     " If the feature is available
-    set clipboard=unnamed " copy to the system clipboard
-    if has('unnamedplus')
-        set clipboard+=unnamedplus
-    endif
-endif
+"if has('clipboard')     " If the feature is available
+"    set clipboard=unnamed " copy to the system clipboard
+"    if has('unnamedplus')
+"        set clipboard+=unnamedplus
+"    endif
+"endif
 
 " Smash jk to go back to normal mode and save
-inoremap jk <ESC>:w<CR>
-inoremap kj <ESC>:w<CR>
+inoremap jk <ESC>
+inoremap kj <ESC>
 
 " Default to 4 spaces per tab
 set tabstop=4
@@ -37,7 +39,6 @@ set ignorecase "Use case insensitive search
 set smartcase  "overrides ignorecase if there is a capital
 set hlsearch   "Hilight search matches
 
-set showmatch "show matching bracket
 set colorcolumn=80 "Highlight column 80
 
 "Move by visual line
@@ -58,25 +59,19 @@ call minpac#init()
 " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-call minpac#add('jez/vim-github-hub')
 call minpac#add('tpope/vim-sensible')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-markdown')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-git')
+
 call minpac#add('kien/ctrlp.vim')
 call minpac#add('airblade/vim-gitgutter')
-call minpac#add('valloric/listtoggle')
-call minpac#add('junegunn/gv.vim')
-call minpac#add('christoomey/vim-conflicted')
-call minpac#add('raichoo/purescript-vim')
-call minpac#add('vimwiki/vimwiki')
-" Swift Dev
-call minpac#add('keith/swift.vim')
-call minpac#add('gfontenot/vim-xcode')
 
+" color Schemes
+call minpac#add('joshdick/onedark.vim')
+
+" Swift Lang
+call minpac#add('gfontenot/vim-xcode')
+call minpac#add('keith/swift.vim')
+call minpac#add('cfdrake/vim-pbxproj')
 packloadall
 
 " minpac commands:
@@ -85,19 +80,20 @@ command! PackClean call minpac#clean()
 
 set updatetime=250 "Faster update time for GitGutter
 
-if executable('ag')
-    " User Silver Searcher instead of grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Make CtrlP use ag for listing the files. Way faster and no useless files.
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
+"if executable('ag')
+"    " User Silver Searcher instead of grep
+"    set grepprg=ag\ --nogroup\ --nocolor
+"    " Make CtrlP use ag for listing the files. Way faster and no useless files.
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"    " ag is fast enough that CtrlP doesn't need to cache
+"    let g:ctrlp_use_caching = 0
+"endif
 
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
 set wildmode=list:longest,list:full
+
 function! InsertTabWrapper()
   let col = col('.') - 1
   if !col || getline('.')[col - 1] !~ '\k'
@@ -121,12 +117,20 @@ autocmd FileType markdown setlocal spell nolist wrap lbr
 autocmd FileType swift setlocal nowrap
 
 
+" Re-load buffers when vim focus is re-gained
+set autoread
+autocmd FocusGained * checktime
+
 augroup quickfix
     autocmd!
     autocmd FileType qf setlocal nowrap
 augroup END
+
 " use tabs for .gitconfig file
 autocmd Filetype gitconfig setlocal ts=4 sw=4 sts=0 noexpandtab
+
+" use 2 spaces for Ruby
+autocmd Filetype ruby setlocal ts=2 sw=2 sts=2
 
 
 " Set spellfile to location that is guaranteed to exist,
@@ -136,22 +140,14 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
+
 "More natural Splits
 set splitbelow
 set splitright
 colorscheme onedark
 
 "Configure Vim-Xcode
-let g:xcode_default_simulator = 'iPhone 5s'
-set secure " Don't let external configs do scary shit
-set exrc   " Load local vimrc if found
+let g:xcode_default_simulator = 'iPhone SE'
 
 " bind K to grep word under the cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Settings for vimwiki
-" Store wiki in dropbox folder
-" use markdown syntax
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki',
-                       \ 'syntax': 'markdown', 'ext': '.md'}]
-
