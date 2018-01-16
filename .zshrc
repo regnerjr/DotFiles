@@ -73,3 +73,6 @@ if hash gpg-agent 2>/dev/null; then
     export GPG_TTY=`tty`
 
 fi
+
+export NVM_DIR="/Users/j0r010l/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
