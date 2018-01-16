@@ -113,6 +113,10 @@ autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
 " Markdown files
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType markdown setlocal spell nolist wrap lbr
+"
+" Storyboard files
+autocmd BufRead,BufNewFile *.storyboard set filetype=xml
+autocmd FileType xml setlocal wrap lbr
 
 " Don't line wrap swift files
 autocmd FileType swift setlocal nowrap
