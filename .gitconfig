@@ -71,6 +71,7 @@
 	tool = vimdiff
 	mnemonicprefix = true
 	indentHeuristic = true
+	colorMoved = zebra
 
 [core]
 	editor = vim
