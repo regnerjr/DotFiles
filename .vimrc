@@ -14,6 +14,7 @@ set list " Show tabs and trailing spaces
 " Smash jk to go back to normal mode and save
 inoremap jk <ESC>
 inoremap kj <ESC>
+inoremap fd <ESC>
 
 " Default to 4 spaces per tab
 set tabstop=4
