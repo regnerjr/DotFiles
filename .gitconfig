@@ -7,7 +7,7 @@
 	signingkey = C874C2B8
 
 [github]
-	user = regnejr
+	user = regnerjr
 
 [alias]
 	l = log --oneline --branches --decorate --graph
@@ -67,9 +67,6 @@
 	added = green
 	changed = red bold
 
-[push]
-	default = current
-
 [diff]
 	tool = vimdiff
 	mnemonicprefix = true
@@ -99,7 +96,6 @@
 	smudge = git-lfs smudge %f
 	required = true
 
-
 [commit]
 	gpgsign = true
 	verbose = true
@@ -109,5 +105,6 @@
 
 [stash]
 	showPatch = true
+
 [gpg]
 	program = gpg
