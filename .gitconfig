@@ -86,6 +86,9 @@
 	default = current
 	ff = only
 
+[pull]
+	ff = only
+
 [merge]
 	tool = opendiff
 
