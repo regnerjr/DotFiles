@@ -27,6 +27,7 @@ augroup vimrcEx
 
   autocmd Filetype vimwiki setlocal spell nolist wrap lbr textwidth=80 colorcolumn=+1
 
+  " Save buffers on focus lost
   autocmd FocusLost * :wa
 
   " For all text files set 'textwidth' to 78 characters.
@@ -95,6 +96,10 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-commentary')
 
+" https://github.com/christoomey/vim-conflicted
+call minpac#add('christoomey/vim-conflicted')
+
+
 call minpac#add('mileszs/ack.vim')
 
 call minpac#add('elzr/vim-json')
@@ -114,6 +119,9 @@ call minpac#add('plasticboy/vim-markdown')
 
 "Gruvbox
 call minpac#add('morhetz/gruvbox')
+
+"Rust
+call minpac#add('rust-lang/rust.vim')
 
 packloadall
 
@@ -141,6 +149,8 @@ let g:vim_markdown_folding_disabled = 1
 " Configure Git / Rhubarb
 let g:github_enterprise_urls = ['https://gecgithub01.walmart.com']
 
+nnoremap <leader>gnc :GitNextConflict<cr>
+
 " configure colorscheme
 augroup Gruvbox
     autocmd!
@@ -163,39 +173,6 @@ if executable('sourcekit-lsp')
                 \ 'whitelist': ['swift'],
                 \ })
 endif
-" Leader commands for notes
-
-function! OpenTodaysNote()
-    let l:date_raw = system("date \"+%b-%d\"")
-    let l:date = trim(l:date_raw)
-    let l:filename = '~/Documents/Notes/2020-Q2/Daily/' . l:date . '.md'
-    let expanded = expand(l:filename)
-    if filereadable(expanded)
-        execute "vsplit " . fnameescape(expanded)
-    else
-        let l:command = expand("~/bin/newNote")
-        echo l:command
-        execute "! " . l:command
-        execute "vsplit " . fnameescape(expanded)
-    endif
-    normal G
-endfunction
-
-function! AddTodayHeading()
-    let l:date = trim(system("date \"+%b %e, %Y at %l:%M:%S %p\""))
-    let l:text = "### " . l:date
-    let l:num = line("$")
-    execute append(l:num, l:text)
-    normal G
-    normal i
-endfunction
-
-map <Leader>nn :call OpenTodaysNote()<CR>
-map <Leader>nt :call AddTodayHeading()<CR>o
-
-" TODO make this dynamically find the right sprint file... the last one
-" really.
-map <Leader>sp :vsplit ~/Documents/Notes/2020-Q2/Sprints/WalmartPlus.md<CR>
 
 " Leaders for vimrc
 map <Leader>ve :edit ~/.vimrc<CR>

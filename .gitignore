@@ -1,2 +1,12 @@
-.vim/pack
+#
+# Ignore Spacemacs backupfiles
+\.\#*
+
+.DS_Store
+.config/gh/hosts.yml
+.config/op/config
+/.lldb/
+.npmrc
 .vim/.netrwhist
+.vim/pack/
+Brewfile.lock.json

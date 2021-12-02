@@ -2,12 +2,15 @@
 set backup
 " Put Backup Files someplace nice
 set backupdir=~/.tmp
-
+set backupcopy=auto
 
 if has('persistent_undo')
   set undofile " Saves Undo History to an Undo file, (undo changes after closing)
   set undodir=~/.tmp
 endif
+
+" Swap files go in .tmp too
+set directory=~/.tmp "Don't clutter up my dirs with swp and tmp files
 
 if &t_Co > 2 || has("gui_running")
   " Switch on highlighting the last used search pattern.
@@ -30,7 +33,6 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-set directory=~/.tmp "Don't clutter up my dirs with swp and tmp files
 
 set hidden "Allow of screen buffers to contain changes
 set ttyfast "I have a fast tty draw faster

@@ -14,3 +14,7 @@ alias gapa='git add -p'
 # GH
 alias pr="gh pr create"
 alias ppr="gh pr view --web"
+
+# BAT!
+alias cat='bat --paging=never'
+export BAT_THEME=1337

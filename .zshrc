@@ -1,3 +1,4 @@
+echo "loaded zshrc"
 # show possible completions (not just a beep)
 setopt autolist
 
@@ -46,6 +47,11 @@ zstyle :compinstall filename '/Users/j0r010l/.zshrc'
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# Bring in brew autocompletes
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 autoload -Uz compinit
 compinit
 
@@ -55,6 +61,9 @@ setopt menu_complete
 # load the colors function?
 autoload -Uz colors && colors
 
+# Color LS output
+export CLICOLOR=1
+
 # Initialize the prompt system promptinit
 autoload -Uz promptinit
 
@@ -62,7 +71,6 @@ autoload -Uz promptinit
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 
 # Git integration that I do not understand
@@ -83,7 +91,8 @@ PS1='%~ ${vcs_info_msg_0_} %# '
 # Show green next, or red question mark and error code number
 RPS1='%(?.%F{green}↩︎.%F{red}?%?)%f'
 
-fpath=(~/.zsh-functions/ /usr/local/share/zsh-completions $fpath)
+fpath=(~/.zsh-functions /usr/local/share/zsh-completions $fpath)
+autoload -Uz delete_branches
 
 if [[ -r ~/.aliasrc ]]; then 
     . ~/.aliasrc
@@ -95,8 +104,12 @@ cdpath=(.. ../.. dev)
 GPG_TTY=$(tty)
 export GPG_TTY
 
-export NVM_DIR="/Users/j0r010l/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Setup NVM
+export NVM_DIR="${HOME}/.nvm"
+# This loads nvm
+brew_nvm=$(brew --prefix nvm)
+[ -s "$brew_nvm/nvm.sh" ] && source "$brew_nvm/nvm.sh"
+
 
 compdef g='git'
 function g {
@@ -116,16 +129,35 @@ export PATH="$PATH:$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bi
 # Add gems from ruby 3.0.0 to path
 export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
 
+# Add Swift mint tools
+export PATH="$HOME/.mint/bin:$PATH"
+
 # brew installed ruby is the main one
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Load brew completions
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
+
+# Load rbenv automatically by appending
+eval "$(rbenv init - zsh)"
+
+# Load pyenv automaticaly
 eval "$(pyenv init -)"
 
-alias vpnc='node /Users/j0r010l/dev/walmart-vpn-cli/index.js'
-alias vpnx='node /Users/j0r010l/dev/walmart-vpn-cli/disconnect.js'
+alias vpnc='node /Users/j0r010l/dev/walmart-vpn-cli/index.js && exit'
+alias vpnx='node /Users/j0r010l/dev/walmart-vpn-cli/disconnect.js && exit'
 
-export PATH="/Users/j0r010l/.mint/bin:$PATH"
+function new-worktree {
+    local project_root="$HOME/dev/glass-app"
+    local worktree_path="$HOME/dev/glass-app-worktrees"
+
+    pushd $project_root
+    # get latest development to put our worktree on
+    git fetch origin development:development
+    git worktree add -b john/$1 $worktree_path/$1 origin/development
+
+    popd
+}
+

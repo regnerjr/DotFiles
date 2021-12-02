@@ -1,0 +1,1 @@
+git log --pretty=format:%ae --since="60 days ago" | sort | uniq

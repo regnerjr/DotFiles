@@ -42,4 +42,39 @@ function volume.quiet()
   hs.alert.show("Volume " .. newVol .. "" )
 end
 
+local spotifyWasPlaying = false
+local logger = hs.logger.new("audioDevice", "debug")
+
+local function restartPlay()
+  hs.alert("Restarting Play")
+  hs.spotify.play()
+end
+
+local function audioDeviceChangedCallback(deviceUID, event, scope, element)
+
+  spotifyIsPlaying = hs.spotify.isPlaying()
+
+  device = hs.audiodevice.findDeviceByUID(deviceUID)
+
+  if event ~= "jack" then
+    return
+  end
+
+  -- Headphones are plugged in (went from headphones not plugged in to plugged in _|-
+  if device:jackConnected() and spotifyWasPlaying then
+    restartPlay()
+  else -- Headphones are being unplugged
+    if spotifyIsPlaying then
+      hs.alert("Spotify Pause")
+      hs.spotify.pause()
+      spotifyWasPlaying = true
+    else
+      spotifyWasPlaying = false
+    end
+  end
+end
+
+audio:watcherCallback(audioDeviceChangedCallback)
+audio:watcherStart()
+
 return volume

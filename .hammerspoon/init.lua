@@ -69,6 +69,7 @@ hs.hotkey.bind({"cmd", "ctrl"}, "H", function()
   f.w = (sf.w / 2)
   win:setFrame(f)
 end)
+
 -- Right Half
 hs.hotkey.bind({"cmd", "ctrl"}, "L", function()
   local win = hs.window.focusedWindow()
@@ -111,34 +112,15 @@ end)
 
 ----- Spotify
 -- Play/Pause
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "end", function()
+hs.hotkey.bind({}, "f4", function()
   hs.spotify.playpause()
   hs.spotify.displayCurrentTrack()
 end)
 
 -- Next Track
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "home", function()
+hs.hotkey.bind({}, "f5", function()
   hs.spotify.next()
   hs.spotify.displayCurrentTrack()
-end)
-
--- Previous Track
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "home", function()
-  hs.spotify.previous()
-  hs.spotify.displayCurrentTrack()
-end)
-
------ System Default Output Volume
-hs.hotkey.bind({"cmd","alt","ctrl"}, "pageup", function()
-  volume.increase()
-end)
-
-hs.hotkey.bind({"cmd","alt","ctrl"}, "pagedown", function()
-  volume.decrease()
-end)
-
-hs.hotkey.bind({"cmd","alt","ctrl"}, "forwarddelete", function()
-  volume.quiet()
 end)
 
 ----- Programmming
@@ -153,8 +135,11 @@ hs.hotkey.bind({"cmd","alt","ctrl"}, "R", function()
   end
 end)
 
+
+------ Launch Apps
+
 -- Launch Dash if not already Running
-hs.hotkey.bind({"cmd","alt","ctrl"}, "\\", function()
+hs.hotkey.bind({"cmd","alt","ctrl", "shift"}, "\\", function()
   local front = hs.application.frontmostApplication()
   if front:name() == "Dash" then
     front:hide()
@@ -163,3 +148,15 @@ hs.hotkey.bind({"cmd","alt","ctrl"}, "\\", function()
     dash:selectMenuItem("Focus Search Field")
   end
 end)
+
+
+hs.loadSpoon("AppLauncher")
+spoon.AppLauncher.modifiers = {"cmd", "alt", "ctrl", "shift"}
+spoon.AppLauncher:bindHotkeys({
+    c = "Calendar",
+    f = "Slack",
+    s = "Spotify",
+    m = "Mail",
+    t = "Terminal",
+    z = "Zoom.us",
+})

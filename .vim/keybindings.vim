@@ -40,3 +40,7 @@ nnoremap <C-l> <C-w>l
 
 " fzf from Modern Vim
 nnoremap <C-p> :<C-u>FZF<CR>
+
+" In visual mode move selected group of lines up or down
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv

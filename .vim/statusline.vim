@@ -5,3 +5,11 @@ set statusline+=%h%q%w%m%r%y "Help, Quickfix, Preview, Modified, ReadOnly, Filet
 set statusline+=%= "Start right aligned items
 set statusline+=%-16(%l,%c%) " Line and column with spacing
 set statusline+=%P "Percent through file
+
+"A conflicted status to my statusline
+" https://github.com/christoomey/vim-conflicted
+function! s:setupConflicted()
+    set stl+=%{ConflictedVersion()}
+    " Resolve and move to next conflicted file.
+endfunction
+autocmd vimrcEx User VimConflicted call s:setupConflicted()

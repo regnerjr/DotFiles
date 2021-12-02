@@ -8,6 +8,7 @@
 
 [github]
 	user = regnerjr
+	oauth-token = 23a3ebcbbaad2ae42ad66a70190bbb36ff4629ea
 
 [alias]
 	c = commit -v
@@ -22,12 +23,19 @@
 	d = diff --patch --word-diff=color --minimal --stat
 	ds = diff --staged --word-diff=color
 	ff = fetch origin development
-	cleanall = "!f() { git reset --hard HEAD && git clean -fd }; f"
 	jk = commit --amend --no-edit
 	update = "pull --rebase --autostash origin development"
+	conflicted = !vim +Conflicted
+	aliases = "!f() { git config --global -l | grep alias | sort; }; f"
+	authors-list = shortlog -e -s -n
+	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
+	me = "!git smartlog --author='John Regner'"
+	revertfile = checkout --
+	unstage = reset HEAD --
+	uncommit = reset --soft HEAD^
 
 [help]
-	autocorrect = 50
+	autocorrect = prompt
 
 [rerere]
 	enabled = 1
@@ -99,15 +107,14 @@
 	rebase = true
 
 [merge]
-	tool = opendiff
-
-[mergetool "opendiff"]
-	cmd = opendiff $LOCAL $REMOTE -ancestor $BASE -merge $MERGED
+	tool = vimdiff
+	ff = only
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 
 [commit]
 	gpgsign = true
@@ -118,7 +125,23 @@
 	showPatch = true
 
 [gpg]
-	program = gpg
+	program = /usr/local/bin/gpg
+
+# use git-delta (installed via homebrew)
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
+
+[delta]
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Monokai Extended
+	navigate = true
+
+[interactive]
+	diffFilter = delta --color-only
 
 [remote "origin"]
 	prune = true
@@ -126,5 +149,12 @@
 
 [rebase]
 	autosquash = true
+
 [difftool]
 	prompt = false
+
+[maintenance]
+	repo = /Users/j0r010l/dev/glass-app
+
+[init]
+	defaultBranch = main
