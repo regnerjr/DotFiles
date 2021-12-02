@@ -11,3 +11,24 @@ export PATH="/usr/local/var/rbenv/shims:$HOME/.rbenv/shims:$PATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 # ADD gettext (gnupg dependency)
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# ADD gpg-agent
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+# ADD gettext (gnupg dependency)
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# Add rust bin to path
+export PATH=$PATH:~/.cargo/bin
+
+# Add sourckit lsp debug mode
+export PATH="${PATH}:/Users/j0r010l/dev/sourcekit-lsp/.build/debug"
+
+# From Modern Vim by Drew Niel
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
+
+# Make sure fzf is visible
+export PATH="${PATH}:${VIMCONFIG}/pack/bundle/start/fzf/bin"
+
+source ~/.env
+

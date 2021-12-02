@@ -1,56 +1,83 @@
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+if &compatible
+  set nocompatible
+endif
 
-"set t_Co=256 " Enable 256 colors for teminal vim
-set list " Show tabs and trailing spaces
+" You can enable loading the plugin files for specific file types with:
+filetype plugin on
 
-"if has('clipboard')     " If the feature is available
-"    set clipboard=unnamed " copy to the system clipboard
-"    if has('unnamedplus')
-"        set clipboard+=unnamedplus
-"    endif
-"endif
+syntax on
 
-" Smash jk to go back to normal mode and save
-inoremap jk <ESC>
-inoremap kj <ESC>
-inoremap fd <ESC>
+source $HOME/.vim/options.vim
 
-" Default to 4 spaces per tab
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
+" Put these in an autocmd group, so that we can delete them easily.
+augroup vimrcEx
+  autocmd!
 
-"Put Undo Files and Such someplace nice
-set backupdir=~/.tmp
-set directory=~/.tmp "Don't clutter up my dirs with swp and tmp files
-set undodir=~/.tmp
+  " Set syntax highlighting for specific file types
 
-set undofile " Saves Undo History to an Undo file,
+  " Markdown files
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd FileType markdown setlocal spell nolist wrap lbr textwidth=80 colorcolumn=+1
 
-set hidden "Allow of screen buffers to contain changes
-set ttyfast "I have a fast tty draw faster
-set number "Show line numbers for the currentline
-set relativenumber "show relative numbers for others
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+  autocmd BufRead,BufNewFile aliases.local,zshrc.local,*/zsh/configs/* set filetype=sh
+  autocmd BufRead,BufNewFile gitconfig.local set filetype=gitconfig
+  autocmd BufRead,BufNewFile tmux.conf.local set filetype=tmux
+  autocmd BufRead,BufNewFile vimrc.local set filetype=vim
 
-let mapleader = "\<space>" "Use Space as leader key
+  autocmd Filetype vimwiki setlocal spell nolist wrap lbr textwidth=80 colorcolumn=+1
 
-set ignorecase "Use case insensitive search
-set smartcase  "overrides ignorecase if there is a capital
-set hlsearch   "Hilight search matches
+  autocmd FocusLost * :wa
 
-set colorcolumn=80 "Highlight column 80
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
 
-"Move by visual line
-nnoremap j gj
-nnoremap k gk
+  " Spell Checking for GitCommit
+  " https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
+  autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
 
-" Easier window movement
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+  " Storyboard files
+  autocmd BufRead,BufNewFile *.storyboard set filetype=xml
+  autocmd FileType xml setlocal wrap lbr
+  autocmd FileType plist setlocal noexpandtab shiftwidth=4 tabstop=4
+
+  " Don't line wrap swift files
+  autocmd FileType swift setlocal nowrap
+  autocmd FileType swift nnoremap <buffer> <leader>d :call DrString#Format()<cr>
+  autocmd FileType swift vnoremap <buffer> <leader>d :call DrString#Format()<cr>
+  autocmd FileType swift setlocal commentstring="// %s"
+  autocmd FileType swift setlocal colorcolumn=120
+
+  " Re-load buffers when vim focus is re-gained
+  set autoread
+  autocmd FocusGained * checktime
+
+  " use tabs for .gitconfig file
+  autocmd Filetype gitconfig setlocal ts=4 sw=4 sts=0 noexpandtab
+
+  " use 2 spaces for Ruby
+  autocmd Filetype ruby setlocal ts=2 sw=2 sts=2
+
+  " use 2 spaces for j son
+   autocmd Filetype json setlocal ts=2 sw=2 sts=2
+   let g:vim_json_conceal = 0 " don't conceal my json
+
+
+   autocmd FileType plist setlocal nowrap noexpandtab shiftwidth=4 tabstop=4
+
+augroup END
+
+" Add optional packages.
+"
+" The matchit plugin makes the % command work better, but it is not backwards
+" compatible.
+" The ! means the package won't be loaded right away but when plugins are
+" loaded during initialization.
+if has('syntax') && has('eval')
+  packadd! matchit
+endif
+
+source $HOME/.vim/keybindings.vim
 
 " Use MinPac to manager Plugins
 " https://github.com/k-takata/minpac
@@ -62,97 +89,120 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-rhubarb')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-commentary')
 
-call minpac#add('kien/ctrlp.vim')
-call minpac#add('airblade/vim-gitgutter')
+call minpac#add('mileszs/ack.vim')
 
-" color Schemes
-call minpac#add('joshdick/onedark.vim')
+call minpac#add('elzr/vim-json')
 
-" Swift Lang
-call minpac#add('gfontenot/vim-xcode')
+call minpac#add('SirVer/ultisnips')
+call minpac#add('vimwiki/vimwiki')
+
+" Swift
 call minpac#add('keith/swift.vim')
-call minpac#add('cfdrake/vim-pbxproj')
+call minpac#add('prabirshrestha/async.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('dduan/DrString.vim')
+
+" Markdown
+call minpac#add('godlygeek/tabular') " Tabular must come before vim-markdown
+call minpac#add('plasticboy/vim-markdown')
+
+"Gruvbox
+call minpac#add('morhetz/gruvbox')
+
 packloadall
 
 " minpac commands:
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
-set updatetime=250 "Faster update time for GitGutter
+" Make CtrlP use ag for listing the files. Way faster and no useless files.
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_clear_cache_on_exit = 1 "Keep cache across sessions
+let g:ctrlp_lazy_update = 50 "wait 50ms till typing stops
 
-"if executable('ag')
-"    " User Silver Searcher instead of grep
-"    set grepprg=ag\ --nogroup\ --nocolor
-"    " Make CtrlP use ag for listing the files. Way faster and no useless files.
-"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"    " ag is fast enough that CtrlP doesn't need to cache
-"    let g:ctrlp_use_caching = 0
-"endif
+" Make ack.vim use ag.
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
+" Configure ultisnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsEditSplit="vertical"
 
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+" Configure vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
-" Spell Checking for GitCommit and Markdown files
-" https://robots.thoughtbot.com/opt-in-project-specific-vim-spell-checking-and-word-completion
-autocmd FileType gitcommit setlocal spell textwidth=72 colorcolumn=+1
+" Configure Git / Rhubarb
+let g:github_enterprise_urls = ['https://gecgithub01.walmart.com']
 
-" Markdown files
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd FileType markdown setlocal spell nolist wrap lbr
-"
-" Storyboard files
-autocmd BufRead,BufNewFile *.storyboard set filetype=xml
-autocmd FileType xml setlocal wrap lbr
-
-" Don't line wrap swift files
-autocmd FileType swift setlocal nowrap
-
-
-" Re-load buffers when vim focus is re-gained
-set autoread
-autocmd FocusGained * checktime
+" configure colorscheme
+augroup Gruvbox
+    autocmd!
+    autocmd vimenter * colorscheme gruvbox
+    set background=dark    " Setting dark mode
+augroup END
 
 augroup quickfix
     autocmd!
     autocmd FileType qf setlocal nowrap
 augroup END
 
-" use tabs for .gitconfig file
-autocmd Filetype gitconfig setlocal ts=4 sw=4 sts=0 noexpandtab
+source $HOME/.vim/statusline.vim
 
-" use 2 spaces for Ruby
-autocmd Filetype ruby setlocal ts=2 sw=2 sts=2
+" Configure LSP for Swift
+if executable('sourcekit-lsp')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'sourcekit-lsp',
+                \ 'cmd': {server_info->['sourcekit-lsp']},
+                \ 'whitelist': ['swift'],
+                \ })
+endif
+" Leader commands for notes
 
+function! OpenTodaysNote()
+    let l:date_raw = system("date \"+%b-%d\"")
+    let l:date = trim(l:date_raw)
+    let l:filename = '~/Documents/Notes/2020-Q2/Daily/' . l:date . '.md'
+    let expanded = expand(l:filename)
+    if filereadable(expanded)
+        execute "vsplit " . fnameescape(expanded)
+    else
+        let l:command = expand("~/bin/newNote")
+        echo l:command
+        execute "! " . l:command
+        execute "vsplit " . fnameescape(expanded)
+    endif
+    normal G
+endfunction
 
-" Set spellfile to location that is guaranteed to exist,
-" can be symlinked to Dropbox or kept in Git
-" and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+function! AddTodayHeading()
+    let l:date = trim(system("date \"+%b %e, %Y at %l:%M:%S %p\""))
+    let l:text = "### " . l:date
+    let l:num = line("$")
+    execute append(l:num, l:text)
+    normal G
+    normal i
+endfunction
 
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
+map <Leader>nn :call OpenTodaysNote()<CR>
+map <Leader>nt :call AddTodayHeading()<CR>o
 
-"More natural Splits
-set splitbelow
-set splitright
-colorscheme onedark
+" TODO make this dynamically find the right sprint file... the last one
+" really.
+map <Leader>sp :vsplit ~/Documents/Notes/2020-Q2/Sprints/WalmartPlus.md<CR>
 
-"Configure Vim-Xcode
-let g:xcode_default_simulator = 'iPhone SE'
+" Leaders for vimrc
+map <Leader>ve :edit ~/.vimrc<CR>
+map <Leader>vs :source ~/.vimrc<CR>
 
-" bind K to grep word under the cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" Python mode
+augroup Python
+  autocmd!
+  autocmd FileType python nnoremap <buffer> <Leader>r :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+augroup END

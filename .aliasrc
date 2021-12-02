@@ -1,0 +1,16 @@
+alias v="vim"
+alias o="open ."
+alias dash="open dash://"
+alias xc='xed *.xcodeproj'
+
+alias ll='ls -lh'
+alias la='ls -A'
+
+# Git
+alias gpf='git push --force-with-lease'
+alias gst='echo "Run g instead"; echo "g st for the long version"; g'
+alias gapa='git add -p'
+
+# GH
+alias pr="gh pr create"
+alias ppr="gh pr view --web"

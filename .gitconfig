@@ -4,32 +4,36 @@
 [user]
 	name = John Regner
 	email = regnerjr@gmail.com
-	signingkey = C874C2B8
+	signingkey = 001FF0A20851972A
 
 [github]
 	user = regnerjr
 
 [alias]
+	c = commit -v
+	a = add -p
+	rhh = reset --hard HEAD
+	bn = branch --show-current
 	l = log --oneline --branches --decorate --graph
 	b = branch
 	s = status --short --branch
+	st = status --show-stash
 	co = checkout
 	d = diff --patch --word-diff=color --minimal --stat
 	ds = diff --staged --word-diff=color
-	dt = difftool --no-prompt
-	fa = fetch --all --prune
-	rhh = reset --hard HEAD
-	c = commit -v
-	a = add -p
-	bn = "!f() { git branch | grep '*' | awk '{print $2}' | pbcopy;  }; f"
+	ff = fetch origin development
+	cleanall = "!f() { git reset --hard HEAD && git clean -fd }; f"
 	jk = commit --amend --no-edit
-	patch = !git --no-pager diff --no-color
+	update = "pull --rebase --autostash origin development"
 
 [help]
 	autocorrect = 50
 
 [rerere]
 	enabled = 1
+
+[branch]
+	autosetuprebase = always
 
 [color]
 	ui = true
@@ -72,12 +76,16 @@
 	mnemonicprefix = true
 	indentHeuristic = true
 	colorMoved = zebra
+	noprefix = true
+
+[diff "localizablestrings"]
+	textconv = "iconv -f utf-16 -t utf-8"
+	binary = false
 
 [core]
 	editor = vim
 	whitespace = warn
-	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = ~/.gitignore
 
 [fetch]
 	prune = true
@@ -88,6 +96,7 @@
 
 [pull]
 	ff = only
+	rebase = true
 
 [merge]
 	tool = opendiff
@@ -103,12 +112,19 @@
 [commit]
 	gpgsign = true
 	verbose = true
-
-[submodule]
-	fetchJobs = 4
+	template = ~/.gitmessage
 
 [stash]
 	showPatch = true
 
 [gpg]
 	program = gpg
+
+[remote "origin"]
+	prune = true
+	pruneTags = true
+
+[rebase]
+	autosquash = true
+[difftool]
+	prompt = false
