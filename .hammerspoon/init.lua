@@ -1,4 +1,4 @@
-local volume   = require 'volume'
+local volume = require 'volume'
 
 -- Auto Reload
 function reloadConfig(files)
@@ -150,9 +150,22 @@ hs.hotkey.bind({"cmd","alt","ctrl", "shift"}, "\\", function()
 end)
 
 
-hs.loadSpoon("AppLauncher")
-spoon.AppLauncher.modifiers = {"cmd", "alt", "ctrl", "shift"}
-spoon.AppLauncher:bindHotkeys({
+local AppLauncher = {}
+
+--- AppLauncher.modifiers
+--- Modifier keys used when launching apps
+AppLauncher.modifiers = {"cmd", "alt", "ctrl", "shift"}
+
+--- AppLauncher:bindHotkeys(mapping)
+function AppLauncher:bindHotkeys(mapping)
+    for key, app in pairs(mapping) do
+        hs.hotkey.bind(AppLauncher.modifiers, key, function()
+            hs.application.launchOrFocus(app)
+        end)
+    end
+end
+
+AppLauncher:bindHotkeys({
     c = "Calendar",
     f = "Slack",
     s = "Spotify",
