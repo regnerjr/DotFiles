@@ -114,13 +114,22 @@ end)
 -- Play/Pause
 hs.hotkey.bind({}, "f4", function()
   hs.spotify.playpause()
-  hs.spotify.displayCurrentTrack()
+  hs.timer.doAfter(0.2,
+    function()
+    if hs.spotify.isPlaying() then
+      hs.spotify.displayCurrentTrack()
+    end
+  end)
 end)
 
 -- Next Track
 hs.hotkey.bind({}, "f5", function()
   hs.spotify.next()
-  hs.spotify.displayCurrentTrack()
+  hs.timer.doAfter(0.2,
+    function()
+      hs.spotify.displayCurrentTrack()
+    end
+  )
 end)
 
 ----- Programmming
