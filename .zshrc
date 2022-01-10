@@ -35,22 +35,20 @@ typeset -U path
 # Setup the completion system
 # The following lines were added by compinstall
 
-zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
 zstyle ':completion:*' max-errors 3
 zstyle ':completion:*' prompt '%e'
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' menu select
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 
 zstyle :compinstall filename '/Users/j0r010l/.zshrc'
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# Bring in brew autocompletes
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-fi
 
 autoload -Uz compinit
 compinit
@@ -68,10 +66,18 @@ export CLICOLOR=1
 autoload -Uz promptinit
 
 # use Vim as the visual editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
+# From Modern Vim by Drew Niel
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
+
 export LANG=en_US.UTF-8
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
 # Git integration that I do not understand
 autoload -Uz vcs_info
@@ -93,6 +99,7 @@ RPS1='%(?.%F{green}↩︎.%F{red}?%?)%f'
 
 fpath=(~/.zsh-functions /usr/local/share/zsh-completions $fpath)
 autoload -Uz delete_branches
+autoload -Uz new_worktree
 
 if [[ -r ~/.aliasrc ]]; then 
     . ~/.aliasrc
@@ -110,7 +117,6 @@ export NVM_DIR="${HOME}/.nvm"
 brew_nvm=$(brew --prefix nvm)
 [ -s "$brew_nvm/nvm.sh" ] && source "$brew_nvm/nvm.sh"
 
-
 compdef g='git'
 function g {
     if [[ $# > 0 ]]; then
@@ -123,18 +129,6 @@ function g {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
-# ADD Xcode tools to end of path
-export PATH="$PATH:$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin"
-
-# Add gems from ruby 3.0.0 to path
-export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
-
-# Add Swift mint tools
-export PATH="$HOME/.mint/bin:$PATH"
-
-# brew installed ruby is the main one
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
 # Load brew completions
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -144,6 +138,8 @@ fi
 eval "$(rbenv init - zsh)"
 
 # Load pyenv automaticaly
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 alias vpnc='node /Users/j0r010l/dev/walmart-vpn-cli/index.js && exit'
