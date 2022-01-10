@@ -1,5 +1,9 @@
-alias v="vim"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
 alias o="open ."
+
 alias dash="open dash://"
 alias xc='xed *.xcodeproj'
 

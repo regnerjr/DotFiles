@@ -25,7 +25,7 @@
 	ff = fetch origin development
 	jk = commit --amend --no-edit
 	update = "pull --rebase --autostash origin development"
-	conflicted = !vim +Conflicted
+	conflicted = !nvim +Conflicted
 	aliases = "!f() { git config --global -l | grep alias | sort; }; f"
 	authors-list = shortlog -e -s -n
 	smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
@@ -91,7 +91,6 @@
 	binary = false
 
 [core]
-	editor = vim
 	whitespace = warn
 	excludesfile = ~/.gitignore
 

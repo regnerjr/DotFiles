@@ -3,11 +3,17 @@ if &compatible
 endif
 
 " You can enable loading the plugin files for specific file types with:
-filetype plugin on
+filetype plugin indent on
+syntax enable
 
-syntax on
+" Disable python 2
+let g:loaded_python_provider = 0
 
 source $HOME/.vim/options.vim
+
+if has('nvim') && executable('nvr')
+    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+endif
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
@@ -43,7 +49,7 @@ augroup vimrcEx
   autocmd FileType plist setlocal noexpandtab shiftwidth=4 tabstop=4
 
   " Don't line wrap swift files
-  autocmd FileType swift setlocal nowrap
+  autocmd FileType swift setlocal nowrap textwidth=120
   autocmd FileType swift nnoremap <buffer> <leader>d :call DrString#Format()<cr>
   autocmd FileType swift vnoremap <buffer> <leader>d :call DrString#Format()<cr>
   autocmd FileType swift setlocal commentstring="// %s"
@@ -62,7 +68,6 @@ augroup vimrcEx
   " use 2 spaces for j son
    autocmd Filetype json setlocal ts=2 sw=2 sts=2
    let g:vim_json_conceal = 0 " don't conceal my json
-
 
    autocmd FileType plist setlocal nowrap noexpandtab shiftwidth=4 tabstop=4
 
@@ -99,13 +104,9 @@ call minpac#add('tpope/vim-commentary')
 " https://github.com/christoomey/vim-conflicted
 call minpac#add('christoomey/vim-conflicted')
 
-
 call minpac#add('mileszs/ack.vim')
 
 call minpac#add('elzr/vim-json')
-
-call minpac#add('SirVer/ultisnips')
-call minpac#add('vimwiki/vimwiki')
 
 " Swift
 call minpac#add('keith/swift.vim')
@@ -137,11 +138,6 @@ let g:ctrlp_lazy_update = 50 "wait 50ms till typing stops
 " Make ack.vim use ag.
 let g:ackprg = 'ag --vimgrep --smart-case'
 cnoreabbrev ag Ack
-
-" Configure ultisnips
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsEditSplit="vertical"
 
 " Configure vim-markdown
 let g:vim_markdown_folding_disabled = 1
