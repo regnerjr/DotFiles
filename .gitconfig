@@ -3,8 +3,7 @@
 
 [user]
 	name = John Regner
-	email = regnerjr@gmail.com
-	signingkey = 001FF0A20851972A
+	email = john.regner@walmart.com
 
 [github]
 	user = regnerjr
@@ -22,9 +21,11 @@
 	co = checkout
 	d = diff --patch --word-diff=color --minimal --stat
 	ds = diff --staged --word-diff=color
+	fd = fetch origin development
 	ff = fetch origin development
 	jk = commit --amend --no-edit
-	update = "pull --rebase --autostash origin development"
+	up = "pull --no-stat --rebase --autostash origin development"
+	update = "pull --no-stat --rebase --autostash origin development"
 	conflicted = !nvim +Conflicted
 	aliases = "!f() { git config --global -l | grep alias | sort; }; f"
 	authors-list = shortlog -e -s -n
@@ -109,22 +110,12 @@
 	tool = vimdiff
 	ff = only
 
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
-
 [commit]
-	gpgsign = true
 	verbose = true
 	template = ~/.gitmessage
 
 [stash]
 	showPatch = true
-
-[gpg]
-	program = /usr/local/bin/gpg
 
 # use git-delta (installed via homebrew)
 [pager]
@@ -153,7 +144,7 @@
 	prompt = false
 
 [maintenance]
-	repo = /Users/j0r010l/dev/glass-app
+	repo = /Users/j0r010l/Developer/glass-app
 
 [init]
 	defaultBranch = main

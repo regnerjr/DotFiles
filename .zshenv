@@ -1,30 +1,23 @@
 echo "Loaded zshenv"
 #Add Standard Paths
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Add user bin file to path
 export PATH="$HOME/bin:$PATH"
-# add Swift Toolchains to path
-export PATH="${PATH}:/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin"
-export SOURCEKIT_TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain"
 
-# ADD gpg-agent
-export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
-# ADD gettext (gnupg dependency)
-export PATH="/usr/local/opt/gettext/bin:$PATH"
+# ADD RBENV to path
+export PATH="/usr/local/var/rbenv/shims:$HOME/.rbenv/shims:$PATH"
 
 # Add rust bin to path
-export PATH=$PATH:~/.cargo/bin
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  export PATH=$PATH:~/.cargo/bin
+fi
 
-# Add sourckit lsp debug mode
-export PATH="${PATH}:/Users/j0r010l/dev/sourcekit-lsp/.build/debug"
-
-# From Modern Vim by Drew Niel
-export VIMCONFIG=~/.vim
-export VIMDATA=~/.vim
+if [[ -d "$HOME/.cargo/env" ]] ; then
+  source "$HOME/.cargo/env"
+fi
 
 # Make sure fzf is visible
 export PATH="${PATH}:${VIMCONFIG}/pack/bundle/start/fzf/bin"
 
 source ~/.env
-. "$HOME/.cargo/env"

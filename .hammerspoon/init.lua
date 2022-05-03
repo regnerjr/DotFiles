@@ -128,21 +128,19 @@ hs.hotkey.bind({}, "f5", function()
   hs.timer.doAfter(0.2,
     function()
       hs.spotify.displayCurrentTrack()
-    end
-  )
+  end)
+end)
+
+-- Previous Track
+hs.hotkey.bind({"shift"}, "f5", function()
+  hs.spotify.previous()
+  hs.timer.doAfter(0.2,
+    function()
+      hs.spotify.displayCurrentTrack()
+  end)
 end)
 
 ----- Programmming
--- Reset iOS Simulator
-hs.hotkey.bind({"cmd","alt","ctrl"}, "R", function()
-  local sim = hs.application.get("Simulator")
-  if sim then
-    sim:activate()
-    sim:selectMenuItem("Reset Content and Settings…")
-  else
-    hs.alert("Simulator not found")
-  end
-end)
 
 
 ------ Launch Apps
@@ -180,5 +178,7 @@ AppLauncher:bindHotkeys({
     s = "Spotify",
     m = "Mail",
     t = "Terminal",
+    o = "Omnifocus",
+    j = "Microsoft Outlook",
     z = "Zoom.us",
 })

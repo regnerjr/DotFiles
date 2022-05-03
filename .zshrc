@@ -65,13 +65,13 @@ export CLICOLOR=1
 # Initialize the prompt system promptinit
 autoload -Uz promptinit
 
-# use Vim as the visual editor
+# use nVim as the visual editor
 export VISUAL=nvim
 export EDITOR=$VISUAL
 
 # From Modern Vim by Drew Niel
-export VIMCONFIG=~/.vim
-export VIMDATA=~/.vim
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
 
 export LANG=en_US.UTF-8
 
@@ -99,7 +99,8 @@ RPS1='%(?.%F{green}↩︎.%F{red}?%?)%f'
 
 fpath=(~/.zsh-functions /usr/local/share/zsh-completions $fpath)
 autoload -Uz delete_branches
-autoload -Uz new_worktree
+autoload -Uz new-worktree
+autoload -Uz tab
 
 if [[ -r ~/.aliasrc ]]; then 
     . ~/.aliasrc
@@ -107,15 +108,14 @@ fi
 
 cdpath=(.. ../.. dev)
 
-# Setup GPG
-GPG_TTY=$(tty)
 export GPG_TTY
 
 # Setup NVM
 export NVM_DIR="${HOME}/.nvm"
-# This loads nvm
-brew_nvm=$(brew --prefix nvm)
-[ -s "$brew_nvm/nvm.sh" ] && source "$brew_nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#setup rbenv
+eval "$(rbenv init - zsh)"
 
 compdef g='git'
 function g {
@@ -131,23 +131,26 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Load brew completions
 if type brew &>/dev/null; then
-	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
-# Load rbenv automatically by appending
-eval "$(rbenv init - zsh)"
+function tab {
+  # Must not have trailing semicolon, for iTerm compatibility
+  local command="cd \\\"$PWD\\\"; clear"
+  (( $# > 0 )) && command="${command}; $*"
 
-# Load pyenv automaticaly
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
-alias vpnc='node /Users/j0r010l/dev/walmart-vpn-cli/index.js && exit'
-alias vpnx='node /Users/j0r010l/dev/walmart-vpn-cli/disconnect.js && exit'
+  # Discarding stdout to quash "tab N of window id XXX" output
+  osascript >/dev/null <<EOF
+    tell application "System Events"
+      tell process "Terminal" to keystroke "t" using command down
+    end tell
+    tell application "Terminal" to do script "${command}" in front window
+EOF
+}
 
 function new-worktree {
-    local project_root="$HOME/dev/glass-app"
-    local worktree_path="$HOME/dev/glass-app-worktrees"
+    local project_root="$HOME/Developer/glass-app"
+    local worktree_path="$HOME/Developer/glass-app-worktrees"
 
     pushd $project_root
     # get latest development to put our worktree on
@@ -155,5 +158,24 @@ function new-worktree {
     git worktree add -b john/$1 $worktree_path/$1 origin/development
 
     popd
+
+    # Get the worktree ready to use.
+    pushd $worktree_path/$1
+    tab "glass environment setup; ./scripts/resolve-swift-packages.sh; xc"
+    popd
 }
 
+alias vpnc='node /Users/j0r010l/Developer/walmart-vpn-cli-1.1/index.js'
+alias vpnx='node /Users/j0r010l/Developer/walmart-vpn-cli-1.1/disconnect.js'
+
+export PATH=$HOME/.mint/bin:$PATH
+# setup pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
+# GPG
+export GPG_TTY=$(tty)

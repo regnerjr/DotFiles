@@ -5,7 +5,7 @@ alias vim="nvim"
 alias o="open ."
 
 alias dash="open dash://"
-alias xc='xed *.xcodeproj'
+alias xc='xed *.xcworkspace || xed *.xcodeproj'
 
 alias ll='ls -lh'
 alias la='ls -A'

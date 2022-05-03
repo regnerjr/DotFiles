@@ -1,48 +1,59 @@
 tap "homebrew/bundle"
-tap "homebrew/core"
+tap "homebrew/cask"
 tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "robotsandpencils/made"
 
-# Development
-# `cat` replacement written in rust
+brew "aria2"
 brew "bat"
-# Command-line fuzzy finder written in Go
+brew "cmake"
 brew "fzf"
-# Add GitHub support to git on the command-line
 brew "gh"
-# work with version control
 brew "git"
-# Lightweight and flexible command-line JSON processor
+brew "git-delta"
+brew "gnupg"
 brew "jq"
-# The Mac App Store
 brew "mas"
-# The Swift Mint Package Manager
 brew "mint"
-# Neovim
-brew "nvim"
-# Node Version Manager
+brew "neovim"
 brew "nvm"
-# Ruby Version Manager
+brew "pyenv"
+brew "ruby-build"
 brew "rbenv"
-# Linter for Bash scripts
 brew "shellcheck"
-# Terminal multiplexer
+brew "stgit"
+brew "the_silver_searcher"
 brew "tmux"
-# Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Additional completion definitions for zsh
+brew "xclogparser"
 brew "zsh-completions"
+brew "robotsandpencils/made/xcodes", link: true
 
-cask "1password"
+#cask "1password" Installed by hand.
 cask "alfred"
+cask "charles"
+cask "font-jetbrains-mono"
+cask "fork"
 cask "hammerspoon"
 cask "istat-menus"
+cask "monodraw"
 cask "obsidian"
 cask "omnifocus"
 cask "proxyman"
 cask "slack"
-cask "spotify"
-cask "zsa-wally"
+cask "xcodes"
+cask "xscope"
+cask "vivaldi"
 
-cask "font-jetbrains-mono"
-
+mas "Developer", id: 640199958
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
 mas "Instapaper Save", id: 1481302432
+mas "Keynote", id: 409183694
+mas "Marked 2", id: 890031187
+mas "Notchmeister", id: 1599169747
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Playgrounds", id: 1496833156
+mas "SF Menu Bar", id: 1615595104
+mas "Vinegar", id: 1591303229

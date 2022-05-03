@@ -100,6 +100,7 @@ call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-sleuth')
 
 " https://github.com/christoomey/vim-conflicted
 call minpac#add('christoomey/vim-conflicted')
